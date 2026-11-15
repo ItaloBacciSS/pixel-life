@@ -1,0 +1,94 @@
+.streaks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 12px 16px 16px; }
+
+.streak { padding: 8px 12px; border: 3px solid var(--ink); background: #fff; font-size: 0.8rem; text-align: center; }
+.streak strong { display: block; font: 0.75rem/1.6 var(--pixel); }
+
+.day-nav { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 8px 0 16px; }
+.day-nav .label {
+  display: inline-block;
+  min-width: 240px;
+  color: #fff;
+  font: 0.65rem/1.6 var(--pixel);
+  text-align: center;
+  text-shadow: 2px 2px 0 var(--ink);
+}
+.day-nav .label::first-letter { text-transform: uppercase; }
+.day-nav .btn:disabled { opacity: 0.4; cursor: default; }
+
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+
+.atributo, .tropeco-card { --accent: var(--brand); padding: 0 16px 16px; }
+.tropeco-card { --accent: var(--danger); margin: 16px 0 96px; }
+
+.atributo header, .tropeco-card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 -16px 16px;
+  padding: 12px 16px;
+  border-bottom: var(--border);
+  background: var(--accent);
+  color: #fff;
+  font: 0.7rem/1.5 var(--pixel);
+  text-shadow: 2px 2px 0 var(--ink);
+}
+.atributo h3 { font-size: inherit; }
+
+.barra { position: relative; height: 22px; margin: 4px 0 6px; border: 3px solid var(--ink); background: #fff; }
+.barra > div { height: 100%; background: var(--accent); transition: width 0.7s steps(10); }
+.barra::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), #0003 calc(10% - 2px) 10%);
+}
+.xp { color: var(--muted); font: 0.55rem var(--pixel); }
+
+.acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+.acao {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 12px;
+  border: 3px solid var(--ink);
+  background: #fff;
+  box-shadow: 0 3px 0 var(--ink);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.acao small { color: var(--muted); }
+.acao:hover { background: color-mix(in srgb, var(--accent) 15%, white); }
+.acao:active { transform: translateY(3px); box-shadow: none; }
+.acao.feita { background: color-mix(in srgb, var(--accent) 40%, white); font-weight: 700; }
+
+.metas { margin: 0 0 16px; padding: 16px; }
+.metas h3 { font-size: 0.75rem; }
+.meta { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; margin-top: 12px; }
+.meta .trilho { grid-column: 1 / -1; }
+.meta.cumprida span { color: #2a7a2a; font-weight: 700; }
+.saldo { display: inline-block; margin-top: 8px; font-weight: 700; }
+
+dialog { width: min(92vw, 380px); color: var(--ink); }
+dialog::backdrop { background: rgb(43 45 66 / 50%); }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+.flutuante {
+  position: fixed;
+  z-index: 20;
+  color: #fff;
+  font: 0.8rem var(--pixel);
+  text-shadow: 2px 2px 0 var(--ink);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, 0);
+  animation: flutuar 1s steps(12) forwards;
+}
+.flutuante.negativo { color: #ff6b6b; }
+@keyframes flutuar { to { opacity: 0; transform: translate(-50%, -64px); } }
+
+@media (max-width: 480px) {
+  .day-nav .label { min-width: 0; flex: 1; }
+}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/scene.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
+{% endblock %}
+{% block content %}
+<main class="container">
+  {% include "_topbar.html" %}
+
+  <section class="hero card">
+    <div class="scene">
+      <img class="room" src="{{ url_for('room.background') }}" alt="">
+      <img id="quarto" class="quarto" src="{{ url_for('room.svg') }}" alt="">
+      <img id="personagem" class="character" src="{{ url_for('character.svg') }}" alt="Seu personagem">
+      <a id="estante" class="estante" href="{{ url_for('summary.page') }}" aria-label="Ver conquistas"></a>
+      <p id="balao" class="balao"></p>
+      <div id="confete" class="confete"></div>
+      <p id="banner" class="banner" role="status"></p>
+      <div class="nivel-badge"><small>NV</small><strong id="nivel-geral">0</strong></div>
+    </div>
+    <div id="sequencias" class="streaks"></div>
+  </section>
+
+  <section id="metas" class="card metas" hidden></section>
+
+  <nav class="day-nav">
+    <button id="dia-anterior" class="btn btn-ghost" aria-label="Dia anterior">‹</button>
+    <span id="dia-label" class="label"></span>
+    <button id="dia-proximo" class="btn btn-ghost" aria-label="Próximo dia">›</button>
+    <button id="dia-hoje" class="btn btn-ghost" hidden>Hoje</button>
+  </nav>
+
+  <section id="atributos" class="grid"></section>
+  <section id="tropecos" class="card tropeco-card"></section>
+
+  <button id="nova-acao" class="btn fab">+ Nova ação</button>
+
+  <dialog id="dialogo-acao" class="card">
+    <form id="form-acao" class="grade" method="dialog">
+      <h2>Nova ação</h2>
+      <label>Nome <input name="nome" required maxlength="60" placeholder="Ex.: Aula de inglês"></label>
+      <label>Tipo
+        <select name="tropeco">
+          <option value="">Ação boa (ganha XP)</option>
+          <option value="1">Tropeço (perde XP)</option>
+        </select>
+      </label>
+      <label>Atributo <select name="atributo" id="atributo-acao"></select></label>
+      <label>Intensidade
+        <select name="intensidade">
+          <option value="leve">Leve</option>
+          <option value="media" selected>Média</option>
+          <option value="pesada">Pesada</option>
+        </select>
+      </label>
+      <div class="dialog-actions">
+        <button type="button" id="cancelar-acao" class="btn btn-ghost">Cancelar</button>
+        <button class="btn">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <p id="toast" role="status"></p>
+</main>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/ui.js') }}"></script>
+{% endblock %}

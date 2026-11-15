@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ "Criar conta" if registro else "Entrar" }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">{% endblock %}
+{% block content %}
+<main class="auth card">
+  <h1>Pixel Life</h1>
+  <form method="post" class="grade">
+    <label>Usuário
+      <input name="username" required minlength="3" maxlength="40" autocomplete="username" autofocus>
+    </label>
+    <label>Senha
+      <input name="password" type="password" required minlength="8"
+             autocomplete="{{ 'new-password' if registro else 'current-password' }}">
+    </label>
+    <button class="btn">{{ "Criar conta" if registro else "Entrar" }}</button>
+  </form>
+  {% if registro %}
+    <a href="{{ url_for('auth.login') }}">Já tenho conta</a>
+  {% elif config.REGISTRATION_OPEN %}
+    <a href="{{ url_for('auth.register') }}">Criar conta</a>
+  {% endif %}
+</main>
+{% endblock %}

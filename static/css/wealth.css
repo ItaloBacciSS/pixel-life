@@ -1,0 +1,11 @@
+.saldo-card { text-align: center; }
+.saldo-card small { display: block; color: var(--muted); }
+#saldo { display: block; margin-top: 8px; font: 1.4rem/1.4 var(--pixel); }
+#saldo.negativo { color: var(--danger); }
+
+.movimentos { margin: 0; padding: 0; list-style: none; }
+.movimentos li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 0; border-bottom: 2px solid var(--line); }
+.movimentos small { display: block; color: var(--muted); }
+.movimentos .entrada { color: #2a7a2a; }
+.movimentos .saida { color: var(--danger); }
+.movimentos button { padding: 4px 8px; }

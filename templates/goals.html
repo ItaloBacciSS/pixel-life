@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Metas{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/goals.css') }}">
+{% endblock %}
+{% block content %}
+<main class="container">
+  {% include "_topbar.html" %}
+  <h2 class="titulo">Metas</h2>
+  <div class="painel">
+    <section class="card">
+      <header class="linha"><h3>Esta semana</h3><span id="semana-datas" class="sub"></span></header>
+      <div id="lista"></div>
+    </section>
+    <section class="card">
+      <h3>Nova meta</h3>
+      <form id="form-meta" class="grade">
+        <label>Ação <select name="action_key" id="acao-meta" required></select></label>
+        <label>Quantas vezes por semana
+          <select name="vezes">{% for n in range(1, 8) %}<option value="{{ n }}"{{ " selected" if n == 3 }}>{{ n }}</option>{% endfor %}</select>
+        </label>
+        <button class="btn">Criar meta</button>
+      </form>
+    </section>
+  </div>
+  <p id="toast" role="status"></p>
+</main>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/goals.js') }}"></script>
+{% endblock %}

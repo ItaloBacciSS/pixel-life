@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Perfil{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">{% endblock %}
+{% block content %}
+<main class="container">
+  {% include "_topbar.html" %}
+  <h2 class="titulo">Perfil</h2>
+
+  <div class="perfil">
+    <section class="card">
+      <h3>Conta</h3>
+      <p>Usuário: <strong>{{ g.user.username }}</strong><br>Criada em {{ g.user.created_at.strftime("%d/%m/%Y") }}</p>
+    </section>
+
+    <section class="card">
+      <h3>Trocar senha</h3>
+      <form id="form-senha" class="grade">
+        <label>Senha atual <input name="atual" type="password" required autocomplete="current-password"></label>
+        <label>Nova senha <input name="nova" type="password" required minlength="8" autocomplete="new-password"></label>
+        <button class="btn">Salvar nova senha</button>
+      </form>
+    </section>
+
+    <section class="card perigo">
+      <h3>Excluir perfil</h3>
+      <p>Isso apaga sua conta, seus registros, as ações que você criou e o seu personagem. Não dá para desfazer.</p>
+      <form id="form-excluir" class="grade">
+        <label>Sua senha <input name="senha" type="password" required autocomplete="current-password"></label>
+        <label class="check"><input type="checkbox" required> Entendo que não dá para desfazer</label>
+        <button class="btn btn-danger">Excluir meu perfil</button>
+      </form>
+    </section>
+  </div>
+  <p id="toast" role="status"></p>
+</main>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}

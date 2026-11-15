@@ -1,0 +1,467 @@
+{
+  "nivel_minimo": 2,
+  "props": [
+    {
+      "id": "livros",
+      "atributo": "intelecto",
+      "x": 1,
+      "y": 22,
+      "cores": {
+        "r": "#e63946",
+        "g": "#5fb85f",
+        "b": "#3a86ff",
+        "w": "#ffffff"
+      },
+      "mapa": [
+        ".rrrrrr.",
+        ".rrwwrr.",
+        "gggggggg",
+        "gwgggggg",
+        ".bbbbbb.",
+        ".bbbwwb."
+      ]
+    },
+    {
+      "id": "garrafa",
+      "atributo": "vitalidade",
+      "x": 13,
+      "y": 13,
+      "cores": {
+        "k": "#3a86ff",
+        "c": "#7fd1f5",
+        "w": "#e8f7ff"
+      },
+      "mapa": [
+        ".kk.",
+        "cccc",
+        "cwcc",
+        "cwcc",
+        "cccc",
+        "cccc",
+        "cccc"
+      ]
+    },
+    {
+      "id": "relogio",
+      "atributo": "foco",
+      "x": 10,
+      "y": 2,
+      "cores": {
+        "k": "#2b2d42",
+        "w": "#ffffff"
+      },
+      "mapa": [
+        ".kkk.",
+        "kwkwk",
+        "kwkkk",
+        "kwwwk",
+        ".kkk."
+      ]
+    },
+    {
+      "id": "foto",
+      "atributo": "carisma",
+      "x": 3,
+      "y": 9,
+      "cores": {
+        "b": "#8a5a3c",
+        "c": "#9ad1ff",
+        "y": "#ffd23f",
+        "g": "#5fb85f"
+      },
+      "mapa": [
+        "bbbbbb",
+        "bccyyb",
+        "bcgggb",
+        "bggggb",
+        "bbbbbb"
+      ]
+    },
+    {
+      "id": "diploma",
+      "atributo": "carreira",
+      "x": 22,
+      "y": 1,
+      "cores": {
+        "b": "#2b2d42",
+        "w": "#ffffff",
+        "k": "#9aa0a6",
+        "y": "#ffd23f"
+      },
+      "mapa": [
+        "bbbbbb",
+        "bwwwwb",
+        "bwkkwb",
+        "bwwyyb",
+        "bbbbbb"
+      ]
+    },
+    {
+      "id": "biblia",
+      "atributo": "fe",
+      "x": 32,
+      "y": 19,
+      "cores": {
+        "b": "#264653",
+        "y": "#ffd23f",
+        "w": "#ffffff",
+        "m": "#8a5a3c"
+      },
+      "mapa": [
+        "bbbbb",
+        "bbybb",
+        "byyyb",
+        "bbybb",
+        "wwwww",
+        ".mmm.",
+        "..m..",
+        ".mmm."
+      ]
+    },
+    {
+      "id": "cofrinho",
+      "atributo": "riqueza",
+      "x": 37,
+      "y": 18,
+      "cores": {
+        "p": "#ff8fa3",
+        "k": "#2b2d42",
+        "n": "#d1495b"
+      },
+      "mapa": [
+        ".p..p.",
+        "pppppp",
+        "pkpppn",
+        "pppppp",
+        ".pp.pp"
+      ]
+    },
+    {
+      "id": "planta",
+      "atributo": "equilibrio",
+      "x": 43,
+      "y": 15,
+      "cores": {
+        "g": "#4fa34f",
+        "s": "#2e7d32",
+        "p": "#c1693c"
+      },
+      "mapa": [
+        ".g.g.",
+        "ggggg",
+        ".ggg.",
+        "g.s.g",
+        ".gsg.",
+        "..s..",
+        "ppppp",
+        ".ppp."
+      ]
+    },
+    {
+      "id": "halter",
+      "atributo": "forca",
+      "x": 38,
+      "y": 25,
+      "cores": {
+        "p": "#2b2d42",
+        "b": "#9aa0a6"
+      },
+      "mapa": [
+        "p....p",
+        "pbbbbp",
+        "p....p"
+      ]
+    }
+  ],
+  "mascote": {
+    "x": 9,
+    "y": 20,
+    "cores": {
+      "o": "#f4a259",
+      "k": "#2b2d42",
+      "p": "#ff8fa3",
+      "b": "#ff6b81",
+      "y": "#ffd23f",
+      "t": "#7fd1f5",
+      "d": "#a8672f"
+    },
+    "especies": [
+      {
+        "id": "gato",
+        "nome": "Gato",
+        "mapas": {
+          "normal": [
+            "........",
+            ".o....o.",
+            ".oooooo.",
+            ".okooko.",
+            ".ooppoo.",
+            ".oooooo.",
+            "oooooooo",
+            ".oo..oo."
+          ],
+          "feliz": [
+            ".y....y.",
+            ".o....o.",
+            ".oooooo.",
+            ".okooko.",
+            ".obppbo.",
+            ".ookkoo.",
+            "oooooooo",
+            ".oo..oo."
+          ],
+          "triste": [
+            "........",
+            "o......o",
+            ".oooooo.",
+            ".okooko.",
+            ".otppto.",
+            ".oookoo.",
+            ".oooooo.",
+            ".oo..oo."
+          ]
+        },
+        "pelagens": [
+          {
+            "id": "laranja",
+            "nome": "Laranja",
+            "cores": {
+              "o": "#f4a259"
+            }
+          },
+          {
+            "id": "cinza",
+            "nome": "Cinza",
+            "cores": {
+              "o": "#a8a29e"
+            }
+          },
+          {
+            "id": "branco",
+            "nome": "Branco",
+            "cores": {
+              "o": "#f5f0e6"
+            }
+          },
+          {
+            "id": "chocolate",
+            "nome": "Chocolate",
+            "cores": {
+              "o": "#8a5a3c"
+            }
+          },
+          {
+            "id": "preto",
+            "nome": "Preto",
+            "cores": {
+              "o": "#3b3b4f",
+              "k": "#f8f9fa"
+            }
+          }
+        ]
+      },
+      {
+        "id": "cachorro",
+        "nome": "Cachorro",
+        "mapas": {
+          "normal": [
+            "........",
+            ".oooooo.",
+            "dooooood",
+            "dokookod",
+            "dooppood",
+            ".oooooo.",
+            "oooooooo",
+            ".oo..oo."
+          ],
+          "feliz": [
+            ".y....y.",
+            ".oooooo.",
+            "dooooood",
+            "dokookod",
+            "dobppbod",
+            ".ooppoo.",
+            "oooooooo",
+            ".oo..oo."
+          ],
+          "triste": [
+            "........",
+            ".oooooo.",
+            ".oooooo.",
+            "dokookod",
+            "dotpptod",
+            "dooookod",
+            ".oooooo.",
+            ".oo..oo."
+          ]
+        },
+        "pelagens": [
+          {
+            "id": "caramelo",
+            "nome": "Caramelo",
+            "cores": {
+              "o": "#d9a05b",
+              "d": "#a8672f"
+            }
+          },
+          {
+            "id": "marrom",
+            "nome": "Marrom",
+            "cores": {
+              "o": "#8a5a3c",
+              "d": "#5a3825"
+            }
+          },
+          {
+            "id": "branco",
+            "nome": "Branco",
+            "cores": {
+              "o": "#f5f0e6",
+              "d": "#cfc6b4"
+            }
+          },
+          {
+            "id": "cinza",
+            "nome": "Cinza",
+            "cores": {
+              "o": "#a8a29e",
+              "d": "#7d7770"
+            }
+          },
+          {
+            "id": "preto",
+            "nome": "Preto",
+            "cores": {
+              "o": "#3b3b4f",
+              "d": "#1f1f2e",
+              "k": "#f8f9fa"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "padrao": {
+    "tema": "classico",
+    "especie": "gato",
+    "pelagem": "laranja"
+  },
+  "temas": [
+    {
+      "id": "classico",
+      "nome": "Clássico",
+      "trocas": {}
+    },
+    {
+      "id": "azul",
+      "nome": "Céu",
+      "trocas": {
+        "#ffe9a8": "#d8ecff",
+        "#ffdf8a": "#c2e0fa",
+        "#b5651d": "#4a6fa5",
+        "#e0a458": "#c9b79c",
+        "#c98b3f": "#b5a283",
+        "#ffd166": "#ffd23f",
+        "#e63946": "#3a86ff"
+      }
+    },
+    {
+      "id": "rosa",
+      "nome": "Algodão-doce",
+      "trocas": {
+        "#ffe9a8": "#ffe0ea",
+        "#ffdf8a": "#ffcfdf",
+        "#b5651d": "#a24e6b",
+        "#e0a458": "#e8b08f",
+        "#c98b3f": "#d49a78",
+        "#ffd166": "#fff1a8",
+        "#e63946": "#e63983"
+      }
+    },
+    {
+      "id": "verde",
+      "nome": "Jardim",
+      "trocas": {
+        "#ffe9a8": "#e2f5d3",
+        "#ffdf8a": "#cdebb7",
+        "#b5651d": "#4f7a3a",
+        "#e0a458": "#d9a76a",
+        "#c98b3f": "#c4915a",
+        "#ffd166": "#ffe08a",
+        "#e63946": "#2ec4b6"
+      }
+    },
+    {
+      "id": "madeira",
+      "nome": "Cabana",
+      "trocas": {
+        "#ffe9a8": "#d9a066",
+        "#ffdf8a": "#cb915a",
+        "#b5651d": "#5a3a22",
+        "#e0a458": "#8a5a3c",
+        "#c98b3f": "#744a30",
+        "#ffd166": "#ffd166",
+        "#e63946": "#264653"
+      }
+    },
+    {
+      "id": "noite",
+      "nome": "Noite",
+      "trocas": {
+        "#ffe9a8": "#34386b",
+        "#ffdf8a": "#2b2f5c",
+        "#b5651d": "#171a3a",
+        "#e0a458": "#5b4b7a",
+        "#c98b3f": "#4b3d68",
+        "#ffd166": "#ffd23f",
+        "#e63946": "#8338ec",
+        "#8ecae6": "#141736",
+        "#ffffff": "#aab4ff"
+      },
+      "extras": [
+        [
+          16,
+          1,
+          1,
+          1,
+          "#ffffff"
+        ],
+        [
+          18,
+          4,
+          1,
+          1,
+          "#aab4ff"
+        ],
+        [
+          29,
+          3,
+          1,
+          1,
+          "#ffffff"
+        ],
+        [
+          31,
+          1,
+          1,
+          1,
+          "#aab4ff"
+        ],
+        [
+          15,
+          9,
+          1,
+          1,
+          "#ffffff"
+        ],
+        [
+          29,
+          11,
+          1,
+          1,
+          "#aab4ff"
+        ]
+      ]
+    }
+  ]
+}

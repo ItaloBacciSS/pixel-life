@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Quarto{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/scene.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/wardrobe.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+{% block content %}
+<main class="container">
+  {% include "_topbar.html" %}
+  <h2 class="titulo">Quarto e mascote</h2>
+
+  <div class="wardrobe">
+    <section class="card preview">
+      <div class="scene">
+        <img id="fundo" class="room" alt="">
+        <img id="previa-quarto" class="quarto" alt="Pré-visualização do quarto e do mascote">
+        <img class="character" src="{{ url_for('character.svg') }}" alt="Seu personagem">
+      </div>
+    </section>
+
+    <section class="card options">
+      <h3>Mascote</h3><div id="especies" class="chips"></div>
+      <h3>Cor do pelo</h3><div id="pelagens" class="swatches"></div>
+      <h3>Ver o humor</h3><div id="humores" class="chips"></div>
+    </section>
+  </div>
+
+  <section class="card itens-card">
+    <h3>Quarto</h3>
+    <div id="temas" class="temas"></div>
+  </section>
+
+  <button id="salvar" class="btn fab">Salvar</button>
+  <p id="toast" role="status"></p>
+</main>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

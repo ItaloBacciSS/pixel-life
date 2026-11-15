@@ -1,0 +1,5 @@
+.auth { width: calc(100% - 32px); max-width: 380px; margin: 10vh auto 0; }
+
+.auth h1 { margin-bottom: 20px; text-align: center; }
+
+.auth form { margin-bottom: 16px; }

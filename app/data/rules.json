@@ -1,0 +1,159 @@
+{
+  "nivel": {"base": 100, "passo": 20},
+  "sequencias": ["fe"],
+  "personagem": {
+    "corpos": ["masculino", "feminino"],
+    "peles": ["#f4c7a1", "#ffe0c2", "#e0ac82", "#c68642", "#8d5524", "#5c3a21"],
+    "cabelos": ["#5a3825", "#1f1b24", "#8a5a3c", "#e8c872", "#c8553d", "#3a86ff", "#ff8fa3", "#cfcfcf"],
+    "roupas": ["#ff7a59", "#e63946", "#ffd23f", "#5fb85f", "#2ec4b6", "#3a86ff", "#8338ec", "#f8f9fa"],
+    "slots": {"cabeca": "Cabeça", "rosto": "Rosto", "corpo": "Roupa", "costas": "Costas", "peito": "Peito", "pulso": "Pulso", "mao": "Mão", "pes": "Pés"}
+  },
+  "itens": [
+    {"id": "regata", "nome": "Regata de treino", "slot": "corpo", "requisito": {"atributo": "forca", "nivel": 3}},
+    {"id": "faixa", "nome": "Faixa de treino", "slot": "cabeca", "requisito": {"atributo": "forca", "nivel": 10}},
+    {"id": "tenis", "nome": "Tênis de corrida", "slot": "pes", "requisito": {"atributo": "vitalidade", "nivel": 3}},
+    {"id": "oculos", "nome": "Óculos", "slot": "rosto", "requisito": {"atributo": "intelecto", "nivel": 3}},
+    {"id": "livro", "nome": "Livro", "slot": "mao", "requisito": {"atributo": "intelecto", "nivel": 10}},
+    {"id": "fone", "nome": "Fone de ouvido", "slot": "cabeca", "requisito": {"atributo": "foco", "nivel": 5}},
+    {"id": "social", "nome": "Roupa social", "slot": "corpo", "requisito": {"atributo": "carreira", "nivel": 3}},
+    {"id": "relogio", "nome": "Relógio dourado", "slot": "pulso", "requisito": {"atributo": "riqueza", "nivel": 5}},
+    {"id": "jaqueta", "nome": "Jaqueta estilosa", "slot": "corpo", "requisito": {"atributo": "carisma", "nivel": 5}},
+    {"id": "biblia", "nome": "Bíblia", "slot": "mao", "requisito": {"atributo": "fe", "nivel": 5}},
+    {"id": "medalha", "nome": "Medalha", "slot": "peito", "requisito": {"sequencia": "geral", "dias": 7}},
+    {"id": "capa", "nome": "Capa", "slot": "costas", "requisito": {"sequencia": "geral", "dias": 30}},
+    {"id": "coroa", "nome": "Coroa", "slot": "cabeca", "requisito": {"nivel_geral": 10}}
+  ],
+  "mascote": {
+    "nome": "Pixel",
+    "feliz": {"registros_hoje": 3, "frase": "Hoje está rendendo!"},
+    "triste": {"dias_parado": 3, "frase": "Senti sua falta... vamos voltar?"},
+    "normal": {"frase": "Bora registrar o dia?"}
+  },
+  "conquistas": [
+    {"id": "primeiro_passo", "nome": "Primeiro passo", "icone": "🌱", "requisito": {"registros": 1}},
+    {"id": "dez_registros", "nome": "Pegando o ritmo", "icone": "⭐", "requisito": {"registros": 10}},
+    {"id": "cem_registros", "nome": "Centurião", "icone": "🌟", "requisito": {"registros": 100}},
+    {"id": "quinhentos_registros", "nome": "Lenda da rotina", "icone": "🏆", "requisito": {"registros": 500}},
+    {"id": "semana_de_jogo", "nome": "Uma semana de jogo", "icone": "📅", "requisito": {"dias_ativos": 7}},
+    {"id": "mes_de_jogo", "nome": "Um mês de jogo", "icone": "🗓️", "requisito": {"dias_ativos": 30}},
+    {"id": "cem_dias_de_jogo", "nome": "Cem dias de jogo", "icone": "💯", "requisito": {"dias_ativos": 100}},
+    {"id": "ano_de_jogo", "nome": "Um ano de jogo", "icone": "🎂", "requisito": {"dias_ativos": 365}},
+    {"id": "semana_limpa", "nome": "Semana limpa", "icone": "🛡️", "requisito": {"sequencia": "geral", "dias": 7}},
+    {"id": "mes_limpo", "nome": "Mês limpo", "icone": "🏰", "requisito": {"sequencia": "geral", "dias": 30}},
+    {"id": "cem_dias_firme", "nome": "Cem dias firme", "icone": "🗡️", "requisito": {"sequencia": "geral", "dias": 100}},
+    {"id": "fe_firme", "nome": "Firme na Fé", "icone": "🕊️", "requisito": {"sequencia": "fe", "dias": 30}},
+    {"id": "frequentador", "nome": "Frequentador", "icone": "🏋️", "requisito": {"atributo": "forca", "vezes": 20}},
+    {"id": "estudioso", "nome": "Estudioso", "icone": "🎓", "requisito": {"atributo": "intelecto", "vezes": 20}},
+    {"id": "devoto", "nome": "Devoto", "icone": "📖", "requisito": {"atributo": "fe", "vezes": 50}},
+    {"id": "forte_como_rocha", "nome": "Forte como rocha", "icone": "💪", "requisito": {"atributo": "forca", "nivel": 5}},
+    {"id": "mente_afiada", "nome": "Mente afiada", "icone": "🧠", "requisito": {"atributo": "intelecto", "nivel": 5}},
+    {"id": "fe_inabalavel", "nome": "Fé inabalável", "icone": "✨", "requisito": {"atributo": "fe", "nivel": 10}},
+    {"id": "equilibrado", "nome": "Equilibrado", "icone": "☯️", "requisito": {"todos": 3}},
+    {"id": "decolando", "nome": "Decolando", "icone": "🚀", "requisito": {"nivel_geral": 10}},
+    {"id": "em_orbita", "nome": "Em órbita", "icone": "🌠", "requisito": {"nivel_geral": 25}},
+    {"id": "lendario", "nome": "Lendário", "icone": "🪐", "requisito": {"nivel_geral": 50}}
+  ],
+  "intensidades": {
+    "positivo": {"leve": 5, "media": 10, "pesada": 20},
+    "negativo": {"leve": -3, "media": -8, "pesada": -15}
+  },
+  "atributos": [
+    {
+      "id": "forca", "nome": "Força", "icone": "💪", "cor": "#e63946",
+      "decaimento": {"carencia": 7, "perda": 3},
+      "acoes": [
+        {"id": "forca_academia", "nome": "Treino de academia", "xp": 10},
+        {"id": "forca_treino_pesado", "nome": "Treino longo ou pesado", "xp": 20},
+        {"id": "forca_alongamento", "nome": "Alongamento", "xp": 5}
+      ]
+    },
+    {
+      "id": "vitalidade", "nome": "Vitalidade", "icone": "❤️", "cor": "#ff8fa3",
+      "decaimento": {"carencia": 2, "perda": 4},
+      "acoes": [
+        {"id": "vit_sono", "nome": "Dormi bem", "xp": 10},
+        {"id": "vit_agua", "nome": "Bebi água suficiente", "xp": 5},
+        {"id": "vit_comida", "nome": "Comi bem o dia todo", "xp": 10},
+        {"id": "vit_caminhada", "nome": "Caminhada", "xp": 5},
+        {"id": "vit_cardio", "nome": "Cardio", "xp": 10}
+      ]
+    },
+    {
+      "id": "intelecto", "nome": "Intelecto", "icone": "📚", "cor": "#3a86ff",
+      "decaimento": null,
+      "acoes": [
+        {"id": "int_estudo", "nome": "Estudei 1h", "xp": 10},
+        {"id": "int_leitura", "nome": "Li por 30 min", "xp": 5},
+        {"id": "int_aula", "nome": "Aula ou curso", "xp": 10}
+      ]
+    },
+    {
+      "id": "foco", "nome": "Foco", "icone": "🎯", "cor": "#8338ec",
+      "decaimento": {"carencia": 3, "perda": 3},
+      "acoes": [
+        {"id": "foco_sessao", "nome": "Sessão de foco sem celular", "xp": 10},
+        {"id": "foco_tarefas", "nome": "Cumpri a lista de tarefas do dia", "xp": 10},
+        {"id": "foco_sem_redes", "nome": "Dia sem redes sociais", "xp": 10}
+      ]
+    },
+    {
+      "id": "carreira", "nome": "Carreira", "icone": "💼", "cor": "#457b9d",
+      "decaimento": null,
+      "acoes": [
+        {"id": "car_entrega", "nome": "Entrega concluída", "xp": 15},
+        {"id": "car_projeto", "nome": "Avanço em projeto", "xp": 10},
+        {"id": "car_contato", "nome": "Contato profissional relevante", "xp": 5}
+      ]
+    },
+    {
+      "id": "riqueza", "nome": "Riqueza", "icone": "💰", "cor": "#f4a100",
+      "decaimento": null,
+      "acoes": [
+        {"id": "ric_poupei", "nome": "Poupei dinheiro", "xp": 10},
+        {"id": "ric_sem_gasto", "nome": "Dia sem gasto supérfluo", "xp": 5},
+        {"id": "ric_revisao", "nome": "Revisei as finanças", "xp": 10}
+      ]
+    },
+    {
+      "id": "carisma", "nome": "Carisma", "icone": "🤝", "cor": "#ff7a59",
+      "decaimento": {"carencia": 14, "perda": 1},
+      "acoes": [
+        {"id": "cari_familia", "nome": "Tempo com a família", "xp": 10},
+        {"id": "cari_amigos", "nome": "Tempo com amigos", "xp": 10},
+        {"id": "cari_contato", "nome": "Falei com alguém distante", "xp": 5},
+        {"id": "cari_ajudei", "nome": "Ajudei alguém", "xp": 5}
+      ]
+    },
+    {
+      "id": "equilibrio", "nome": "Equilíbrio", "icone": "🧘", "cor": "#2ec4b6",
+      "decaimento": {"carencia": 3, "perda": 3},
+      "acoes": [
+        {"id": "eq_meditacao", "nome": "Meditação", "xp": 5},
+        {"id": "eq_hobby", "nome": "Hobby", "xp": 10},
+        {"id": "eq_descanso", "nome": "Descanso de qualidade", "xp": 5},
+        {"id": "eq_ar_livre", "nome": "Tempo ao ar livre", "xp": 5}
+      ]
+    },
+    {
+      "id": "fe", "nome": "Fé", "icone": "🕊️", "cor": "#5fb85f",
+      "decaimento": {"carencia": 4, "perda": 2},
+      "acoes": [
+        {"id": "fe_biblia", "nome": "Leitura da Bíblia", "xp": 10},
+        {"id": "fe_oracao", "nome": "Oração", "xp": 5},
+        {"id": "fe_reuniao", "nome": "Reunião", "xp": 15},
+        {"id": "fe_pregacao", "nome": "Pregação", "xp": 20},
+        {"id": "fe_adoracao", "nome": "Adoração em família", "xp": 10},
+        {"id": "fe_preparacao", "nome": "Preparação para a reunião", "xp": 5}
+      ]
+    }
+  ],
+  "tropecos": [
+    {"id": "neg_dieta", "nome": "Sair da dieta", "efeitos": {"forca": -5, "vitalidade": -3}},
+    {"id": "neg_sono", "nome": "Dormir pouco", "efeitos": {"vitalidade": -8, "foco": -3}},
+    {"id": "neg_entrega", "nome": "Não entregar algo", "efeitos": {"carreira": -10}},
+    {"id": "neg_gasto", "nome": "Gasto impulsivo", "efeitos": {"riqueza": -8}},
+    {"id": "neg_procrastinar", "nome": "Procrastinação", "efeitos": {"foco": -8}},
+    {"id": "neg_briga", "nome": "Briga ou mágoa", "efeitos": {"carisma": -5, "equilibrio": -3}},
+    {"id": "neg_fe", "nome": "Tropeço na Fé", "efeitos": {"fe": -25}}
+  ]
+}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Personagem{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/scene.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/wardrobe.css') }}">
+{% endblock %}
+{% block content %}
+<main class="container">
+  {% if not first_time %}{% include "_topbar.html" %}{% endif %}
+  <h2 class="titulo">{{ "Crie seu personagem" if first_time else "Seu personagem" }}</h2>
+
+  <div class="wardrobe">
+    <section class="card preview">
+      <div class="scene">
+        <img class="room" src="{{ url_for('room.background') }}" alt="">
+        <img id="preview" class="character" alt="Pré-visualização do personagem">
+      </div>
+      <p id="aviso" class="aviso" hidden>Itens bloqueados só servem para provar: não são salvos.</p>
+    </section>
+
+    <section class="card options">
+      <h3>Corpo</h3><div id="corpos" class="chips"></div>
+      <h3>Pele</h3><div id="peles" class="swatches"></div>
+      <h3>Cabelo</h3><div id="cabelos" class="swatches"></div>
+      <h3>Roupa</h3><div id="roupas" class="swatches"></div>
+    </section>
+  </div>
+
+  {% if not first_time %}
+  <section class="card itens-card">
+    <h3>Itens</h3>
+    <div id="itens"></div>
+  </section>
+  {% endif %}
+
+  <button id="salvar" class="btn fab" data-primeiro="{{ 1 if first_time else 0 }}">{{ "Começar!" if first_time else "Salvar" }}</button>
+  <p id="toast" role="status"></p>
+</main>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/character.js') }}"></script>
+{% endblock %}

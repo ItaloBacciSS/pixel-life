@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Progresso{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chart.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/progress.css') }}">
+{% endblock %}
+{% block content %}
+<main class="container">
+  {% include "_topbar.html" %}
+  <h2 class="titulo">Progresso</h2>
+  <div class="painel">
+    <section class="card">
+      <header class="linha"><h3>Resumo da semana</h3><span id="semana-datas" class="sub"></span></header>
+      <div id="semana" class="stats"></div>
+      <div id="semana-detalhes"></div>
+    </section>
+    <section class="card">
+      <header class="linha"><h3>Evolução</h3><select id="evolucao-atributo" aria-label="O que mostrar"></select></header>
+      <div id="grafico" class="grafico"></div>
+    </section>
+    <section class="card">
+      <h3 id="conquistas-titulo">Conquistas</h3>
+      <div id="conquistas" class="conquistas"></div>
+    </section>
+  </div>
+  <p id="toast" role="status"></p>
+</main>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/progress.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,9 @@
+<header class="topbar">
+  <h1>Pixel Life</h1>
+  <nav class="menu">
+    {% for endpoint, label in [("game.home", "Jogo"), ("summary.page", "Progresso"), ("goals.page", "Metas"), ("wealth.page", "Riqueza"), ("character.page", "Personagem"), ("room.page", "Quarto"), ("profile.page", "Perfil")] %}
+      <a class="btn btn-ghost{{ ' ativo' if request.endpoint == endpoint }}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+    {% endfor %}
+    <form method="post" action="{{ url_for('auth.logout') }}"><button class="btn btn-ghost">Sair</button></form>
+  </nav>
+</header>

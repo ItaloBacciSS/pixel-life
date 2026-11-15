@@ -1,0 +1,4 @@
+.meta-linha { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 4px 8px; padding: 10px 0; border-bottom: 2px solid var(--line); }
+.meta-linha .trilho { grid-column: 1 / -1; }
+.meta-linha.cumprida strong { color: #2a7a2a; }
+.meta-linha button { padding: 4px 8px; }

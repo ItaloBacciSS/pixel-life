@@ -1,0 +1,113 @@
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("../fonts/press-start-2p.woff2") format("woff2");
+  font-display: swap;
+}
+
+:root {
+  --sky: #5fc4f5;
+  --paper: #fff4d6;
+  --ink: #2b2d42;
+  --muted: #5c5f77;
+  --brand: #ffd23f;
+  --danger: #e63946;
+  --line: #e8d9a8;
+  --border: 4px solid var(--ink);
+  --shadow: 4px 4px 0 var(--ink);
+  --pixel: "Press Start 2P", ui-monospace, monospace;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.5;
+  background: conic-gradient(#0000000f 25%, #0000 0 50%, #0000000f 0 75%, #0000 0) 0 0 / 32px 32px, var(--sky);
+}
+
+h1, h2, h3 { margin: 0; font-family: var(--pixel); font-weight: 400; line-height: 1.5; }
+h1 { font-size: 1rem; }
+
+a { color: var(--ink); }
+
+.container { max-width: 960px; margin: 0 auto; padding: 16px; }
+
+.topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.topbar h1 { color: #fff; font-size: 1.1rem; text-shadow: 3px 3px 0 var(--ink); }
+
+.card { padding: 24px; border: var(--border); background: var(--paper); box-shadow: var(--shadow); }
+
+.btn {
+  padding: 12px 16px;
+  border: 3px solid var(--ink);
+  background: var(--brand);
+  box-shadow: 0 4px 0 var(--ink);
+  color: var(--ink);
+  font: 0.65rem/1.4 var(--pixel);
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: translateY(4px); box-shadow: none; }
+.btn-ghost { background: #fff; }
+.btn-danger { background: var(--danger); color: #fff; }
+a.btn { display: inline-block; text-decoration: none; }
+.btn.ativo { background: var(--brand); }
+
+.menu { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.titulo { margin: 24px 0 12px; color: #fff; font-size: 1rem; text-shadow: 3px 3px 0 var(--ink); }
+
+.grade { display: grid; gap: 16px; }
+.grade label { display: grid; gap: 4px; font-weight: 700; }
+input:not([type="checkbox"]), select { padding: 10px 12px; border: 3px solid var(--ink); background: #fff; font: inherit; }
+input:focus, select:focus { outline: 3px solid var(--brand); }
+
+.painel { display: grid; gap: 16px; margin-bottom: 32px; }
+.painel h3 { margin-bottom: 12px; font-size: 0.75rem; }
+.painel .linha h3 { margin: 0; }
+.linha { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.sub { margin: 4px 0 12px; color: var(--muted); }
+.botoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.trilho { height: 14px; border: 3px solid var(--ink); background: #fff; }
+.trilho > div { height: 100%; background: var(--accent, var(--brand)); }
+
+.fab { position: fixed; right: 16px; bottom: 16px; padding: 14px 18px; }
+
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  margin: 0;
+  padding: 12px 16px;
+  border: 3px solid #fff;
+  background: var(--ink);
+  color: #fff;
+  font: 0.6rem/1.5 var(--pixel);
+  opacity: 0;
+  transform: translate(-50%, 16px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+#toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
+.flash {
+  margin: 0;
+  padding: 12px 16px;
+  border-bottom: var(--border);
+  background: var(--danger);
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .menu .btn { padding: 8px 10px; font-size: 0.55rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation: none !important; transition: none !important; }
+}
