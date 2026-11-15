@@ -1,4 +1,5 @@
 import os
+import re
 
 DEV_SECRET = "dev-only-troque-em-producao"
 
@@ -9,7 +10,7 @@ def _database_url():
         or os.environ.get("POSTGRES_URL")
         or "sqlite:///jogo.db"
     )
-    return url.replace("postgres://", "postgresql://", 1)
+    return re.sub(r"^postgres(ql)?(\+\w+)?://", "postgresql+psycopg2://", url)
 
 
 def _secret_key():
