@@ -6,7 +6,8 @@ LOOK = {"corpo": "masculino", "pele": "#f4c7a1", "cabelo": "#5a3825", "roupa": "
 def test_todo_desenho_tem_14_colunas_e_cabe_em_20_linhas():
     dados = sprites.load()
     for corpo in dados["corpos"].values():
-        assert all(len(mapa) == 20 and all(len(l) == 14 for l in mapa) for mapa in corpo.values())
+        mapas = [corpo["base"], *corpo["roupas"].values(), *corpo["penteados"].values()]
+        assert all(len(mapa) == 20 and all(len(l) == 14 for l in mapa) for mapa in mapas)
     for item in dados["itens"].values():
         assert all(len(l) == 14 for l in item["mapa"])
         assert item["y"] + len(item["mapa"]) <= 20
@@ -18,9 +19,10 @@ def test_cada_item_das_regras_tem_desenho_e_vice_versa():
 
 def test_todo_caractere_usado_tem_cor():
     dados = sprites.load()
-    globais = set(dados["paleta"]) | set("sht")
+    globais = set(dados["paleta"]) | set("shtT")
     for corpo in dados["corpos"].values():
-        usados = {c for mapa in corpo.values() for l in mapa for c in l} - {"."}
+        mapas = [corpo["base"], *corpo["roupas"].values(), *corpo["penteados"].values()]
+        usados = {c for mapa in mapas for l in mapa for c in l} - {"."}
         assert usados <= globais
     for item in dados["itens"].values():
         usados = {c for l in item["mapa"] for c in l} - {"."}

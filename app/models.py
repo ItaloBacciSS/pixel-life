@@ -47,6 +47,8 @@ class Character(db.Model):
     pele = db.Column(db.String(7), nullable=False)
     cabelo = db.Column(db.String(7), nullable=False)
     roupa = db.Column(db.String(7), nullable=False)
+    penteado = db.Column(db.String(20))
+    traje = db.Column(db.String(20))
     itens = db.Column(db.JSON, nullable=False, default=list)
 
 

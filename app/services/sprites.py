@@ -16,6 +16,16 @@ def load():
     return json.loads(SPRITES_FILE.read_text(encoding="utf-8"))
 
 
+def _shade(color, factor=0.78):
+    """Versão mais escura de uma cor #rrggbb (dobras e detalhes da roupa)."""
+    return "#" + "".join(f"{int(int(color[i:i + 2], 16) * factor):02x}" for i in (1, 3, 5))
+
+
+def _style(options, wanted):
+    """Desenho escolhido; se faltar ou não existir, o primeiro da lista."""
+    return options.get(wanted) or next(iter(options.values()))
+
+
 def to_rects(pixels, width, height):
     """Junta pixels vizinhos da mesma cor em retângulos horizontais (SVG menor)."""
     rects = []
@@ -35,7 +45,7 @@ def to_rects(pixels, width, height):
 def render(look):
     """Monta o SVG do personagem por camadas. `look` já deve estar validado."""
     data = load()
-    palette = {**data["paleta"], "s": look["pele"], "h": look["cabelo"], "t": look["roupa"]}
+    palette = {**data["paleta"], "s": look["pele"], "h": look["cabelo"], "t": look["roupa"], "T": _shade(look["roupa"])}
     worn = {rules.items()[item_id]["slot"]: item_id for item_id in look["itens"]}
     pixels = {}
     eyes = set()
@@ -51,11 +61,11 @@ def render(look):
     for step in data["ordem"]:
         if step == "base":
             paint(body["base"])
-            paint(body["roupa"])
+            paint(_style(body["roupas"], look.get("traje")))
             eyes |= {(x, y) for y, row in enumerate(body["base"])
                      for x, char in enumerate(row) if char == "e"}
         elif step == "cabelo":
-            paint(body["cabelo"])
+            paint(_style(body["penteados"], look.get("penteado")))
         elif step in worn:
             sprite = data["itens"][worn[step]]
             paint(sprite["mapa"], sprite["y"], sprite["cores"])

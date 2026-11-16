@@ -6,6 +6,14 @@
     "peles": ["#f4c7a1", "#ffe0c2", "#e0ac82", "#c68642", "#8d5524", "#5c3a21"],
     "cabelos": ["#5a3825", "#1f1b24", "#8a5a3c", "#e8c872", "#c8553d", "#3a86ff", "#ff8fa3", "#cfcfcf"],
     "roupas": ["#ff7a59", "#e63946", "#ffd23f", "#5fb85f", "#2ec4b6", "#3a86ff", "#8338ec", "#f8f9fa"],
+    "penteados": {
+      "masculino": [{"id": "curto", "nome": "Curto"}, {"id": "espetado", "nome": "Espetado"}, {"id": "topete", "nome": "Topete"}],
+      "feminino": [{"id": "longo", "nome": "Longo"}, {"id": "chanel", "nome": "Chanel"}, {"id": "rabo", "nome": "Rabo de cavalo"}]
+    },
+    "trajes": {
+      "masculino": [{"id": "camiseta", "nome": "Camiseta"}, {"id": "moletom", "nome": "Moletom"}, {"id": "polo", "nome": "Polo"}],
+      "feminino": [{"id": "camiseta", "nome": "Camiseta"}, {"id": "moletom", "nome": "Moletom"}, {"id": "vestido", "nome": "Vestido"}]
+    },
     "slots": {"cabeca": "Cabeça", "rosto": "Rosto", "corpo": "Roupa", "costas": "Costas", "peito": "Peito", "pulso": "Pulso", "mao": "Mão", "pes": "Pés"}
   },
   "itens": [

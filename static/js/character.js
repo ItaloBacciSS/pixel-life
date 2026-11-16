@@ -16,6 +16,20 @@ function renderChoices(containerId, field, options, build) {
   })));
 }
 
+// Penteado e modelo de roupa: a lista depende do corpo escolhido.
+function renderStyles(containerId, field) {
+  const options = data.opcoes[containerId][look.corpo];
+  if (!options.some((option) => option.id === look[field])) look[field] = options[0].id;
+  $(containerId).replaceChildren(...options.map((option) => el("button", {
+    type: "button",
+    className: `btn btn-ghost${look[field] === option.id ? " ativo" : ""}`,
+    onclick: () => {
+      look[field] = option.id;
+      render();
+    },
+  }, option.nome)));
+}
+
 const swatch = (color, active, onclick) =>
   el("button", { type: "button", className: `swatch${active ? " ativo" : ""}`, style: `background: ${color}`, title: color, onclick });
 
@@ -48,6 +62,8 @@ function refresh() {
 function render() {
   renderChoices("corpos", "corpo", data.opcoes.corpos, chip);
   renderChoices("peles", "pele", data.opcoes.peles, swatch);
+  renderStyles("penteados", "penteado");
+  renderStyles("trajes", "traje");
   renderChoices("cabelos", "cabelo", data.opcoes.cabelos, swatch);
   renderChoices("roupas", "roupa", data.opcoes.roupas, swatch);
   if (!firstTime) renderItems(); // na criação da conta só se monta o personagem
