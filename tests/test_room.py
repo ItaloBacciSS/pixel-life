@@ -203,7 +203,18 @@ def test_mascote_tem_animacao_e_respeita_reduzir_movimento(humor):
     assert "prefers-reduced-motion" in svg
 
 
-def test_so_o_mascote_triste_fica_parado_no_lugar():
-    assert ".pet.normal{animation:passear" in room.STYLE
-    assert ".pet.feliz{animation:passear" in room.STYLE
+def test_mascote_fica_no_lugar_com_so_pequenos_movimentos():
+    assert ".pet.normal{animation:mexer" in room.STYLE
+    assert ".pet.feliz{animation:saltitar" in room.STYLE
     assert ".pet.triste" not in room.STYLE
+    assert "passear" not in room.STYLE
+    assert not re.search(r"translateX\((?!1px)", room.STYLE)
+
+
+@pytest.mark.parametrize("especie", [e["id"] for e in room.load()["mascote"]["especies"]])
+def test_mascote_pisca_com_a_pelagem_cobrindo_os_olhos(especie):
+    levels = {a["id"]: {"nivel": 1} for a in rules.load()["atributos"]}
+    home = {**room.load()["padrao"], "especie": especie, "pelagem": room.species(especie)["pelagens"][0]["id"]}
+    svg = room.render(levels, "normal", home)
+    olhos = svg.split('<g class="olhos">')[1].split("</g>")[0]
+    assert olhos.count("<rect") == 2

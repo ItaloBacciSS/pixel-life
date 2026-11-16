@@ -9,20 +9,21 @@ DATA = Path(__file__).resolve().parent.parent / "data" / "quarto.json"
 BACKGROUND = Path(__file__).resolve().parents[2] / "static" / "img" / "cenario.svg"
 WIDTH, HEIGHT = 48, 28
 HUMORS = ("normal", "feliz", "triste")
-STYLE = (".pet{transform-box:fill-box;transform-origin:center}"
-         ".pet.normal{animation:passear 24s infinite}"
-         ".pet.feliz{animation:passear 12s infinite}"
-         ".quique{animation:pulo .8s steps(1) infinite}"
-         ".feliz .quique{animation:pulo .4s steps(1) infinite}"
-         ".triste .quique{animation:pulo 2s steps(1) infinite}"
-         "@keyframes pulo{50%{transform:translateY(-1px)}}"
-         "@keyframes passear{"
-         "0%,10%{transform:translateX(0);animation-timing-function:steps(18)}"
-         "45%{transform:translateX(18px);animation-timing-function:steps(3)}"
-         "50%,60%{transform:translateX(18px) scaleX(-1);animation-timing-function:steps(18)}"
-         "95%{transform:translateX(0) scaleX(-1);animation-timing-function:steps(3)}"
-         "100%{transform:translateX(0) scaleX(1)}}"
-         "@media (prefers-reduced-motion:reduce){.pet,.quique{animation:none}}")
+STYLE = (".pet.normal{animation:mexer 14s steps(1) infinite}"
+         ".pet.feliz{animation:saltitar 3s steps(1) infinite}"
+         ".quique{animation:respirar 1.6s steps(1) infinite}"
+         ".feliz .quique{animation:respirar .5s steps(1) infinite}"
+         ".triste .quique{animation:respirar 3s steps(1) infinite}"
+         ".olhos{animation:piscar 5s steps(1) infinite}"
+         "@keyframes respirar{50%{transform:translateY(-1px)}}"
+         "@keyframes piscar{94%{opacity:0}97%{opacity:1}}"
+         "@keyframes mexer{30%,40%{transform:translateX(1px)}42%,60%{transform:none}"
+         "62%,65%{transform:translateY(-2px)}66%,67%{transform:none}"
+         "68%,71%{transform:translateY(-2px)}72%,100%{transform:none}}"
+         "@keyframes saltitar{65%,69%{transform:translateY(-2px)}70%,74%{transform:none}"
+         "75%,79%{transform:translateY(-2px)}80%,100%{transform:none}}"
+         "@media (prefers-reduced-motion:reduce){.pet,.quique,.olhos{animation:none}}")
+EYE_ROW = 3
 
 
 @lru_cache
@@ -69,11 +70,16 @@ def render(levels, humor, home):
         if levels[prop["atributo"]]["nivel"] >= data["nivel_minimo"]:
             _paint(props, prop["mapa"], prop["x"], prop["y"], prop["cores"])
     mascot = data["mascote"]
-    _paint(pet, species(home["especie"])["mapas"][humor], mascot["x"], mascot["y"],
-           pet_colors(home["especie"], home["pelagem"]))
+    sprite = species(home["especie"])["mapas"][humor]
+    colors = pet_colors(home["especie"], home["pelagem"])
+    _paint(pet, sprite, mascot["x"], mascot["y"], colors)
+    eyes = {(mascot["x"] + dx, mascot["y"] + EYE_ROW): colors["k"]
+            for dx, char in enumerate(sprite[EYE_ROW]) if char == "k"}
+    pet.update({pos: colors["o"] for pos in eyes})
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" shape-rendering="crispEdges">'
             f"<style>{STYLE}</style>{sprites.to_rects(props, WIDTH, HEIGHT)}"
-            f'<g class="pet {humor}"><g class="quique">{sprites.to_rects(pet, WIDTH, HEIGHT)}</g></g></svg>')
+            f'<g class="pet {humor}"><g class="quique">{sprites.to_rects(pet, WIDTH, HEIGHT)}'
+            f'<g class="olhos">{sprites.to_rects(eyes, WIDTH, HEIGHT)}</g></g></g></svg>')
 
 
 def background(theme_id):
