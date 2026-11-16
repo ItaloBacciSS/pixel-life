@@ -6,18 +6,24 @@
   <h1>Pixel Life</h1>
   <form method="post" class="grade">
     <label>Usuário
-      <input name="username" required minlength="3" maxlength="40" autocomplete="username" autofocus>
+      <input name="username" required minlength="3" maxlength="40" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" autofocus
+             {% if registro %}pattern="[A-Za-z0-9_.\-]{3,40}" title="Letras, números, _ . ou -"{% endif %}>
     </label>
     <label>Senha
       <input name="password" type="password" required minlength="8"
              autocomplete="{{ 'new-password' if registro else 'current-password' }}">
     </label>
+    {% if registro %}
+      <label class="check"><input type="checkbox" name="aceito" value="1" required>
+        <span>Li e aceito a <a href="{{ url_for('legal.privacy') }}" target="_blank" rel="noopener">política de privacidade</a></span></label>
+    {% endif %}
     <button class="btn">{{ "Criar conta" if registro else "Entrar" }}</button>
   </form>
   {% if registro %}
     <a href="{{ url_for('auth.login') }}">Já tenho conta</a>
-  {% elif config.REGISTRATION_OPEN %}
-    <a href="{{ url_for('auth.register') }}">Criar conta</a>
+  {% else %}
+    {% if config.REGISTRATION_OPEN %}<a href="{{ url_for('auth.register') }}">Criar conta</a><br>{% endif %}
+    <a href="{{ url_for('auth.recover') }}">Esqueci minha senha</a>
   {% endif %}
 </main>
 {% endblock %}

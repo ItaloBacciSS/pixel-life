@@ -13,6 +13,20 @@ $("form-senha").onsubmit = async (event) => {
   }
 };
 
+$("form-codigo").onsubmit = async (event) => {
+  event.preventDefault();
+  const form = event.target;
+  try {
+    const { codigo } = await api.newRecoveryCode(form.senha.value);
+    form.reset();
+    $("codigo").hidden = false;
+    $("codigo").textContent = codigo;
+    toast("Guarde este código: ele não aparece de novo.");
+  } catch (error) {
+    toast(error.message);
+  }
+};
+
 $("form-excluir").onsubmit = async (event) => {
   event.preventDefault();
   try {

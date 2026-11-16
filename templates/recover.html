@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Recuperar conta{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">{% endblock %}
+{% block content %}
+<main class="auth card">
+  <h1>Recuperar conta</h1>
+  <form method="post" class="grade">
+    <label>Usuário
+      <input name="username" required minlength="3" maxlength="40" autocomplete="username" autofocus>
+    </label>
+    <label>Código de recuperação
+      <input name="code" required maxlength="30" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX">
+    </label>
+    <label>Nova senha
+      <input name="password" type="password" required minlength="8" autocomplete="new-password">
+    </label>
+    <button class="btn">Trocar senha</button>
+  </form>
+  <a href="{{ url_for('auth.login') }}">Voltar para o login</a>
+</main>
+{% endblock %}

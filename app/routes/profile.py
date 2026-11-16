@@ -27,3 +27,10 @@ def delete_account():
     accounts.delete_account(g.user, data.get("senha"))
     session.clear()
     return jsonify(ok=True)
+
+
+@bp.post("/api/recuperacao")
+@login_required
+def recovery_code():
+    data = request.get_json(silent=True) or {}
+    return jsonify(codigo=accounts.regenerate_recovery_code(g.user, data.get("senha")))

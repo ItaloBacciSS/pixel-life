@@ -31,5 +31,5 @@ def client(app):
 
 @pytest.fixture
 def logado(client):
-    client.post("/registro", data={"username": "gustavo", "password": "senha-segura"})
+    client.post("/registro", data={"username": "gustavo", "password": "senha-segura", "aceito": "1"})
     return client

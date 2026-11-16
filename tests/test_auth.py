@@ -5,7 +5,7 @@ SENHA = "senha-segura"
 
 
 def registrar(client, username="gustavo", password=SENHA):
-    return client.post("/registro", data={"username": username, "password": password})
+    return client.post("/registro", data={"username": username, "password": password, "aceito": "1"})
 
 
 def test_home_exige_login(client):
@@ -16,7 +16,7 @@ def test_home_exige_login(client):
 
 def test_registro_cria_usuario_entra_e_vai_criar_o_personagem(client):
     resposta = registrar(client)
-    assert resposta.headers["Location"] == "/personagem?primeiro=1"
+    assert resposta.headers["Location"] == "/codigo?primeiro=1"
     assert client.get("/").status_code == 200
 
 

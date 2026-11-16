@@ -61,7 +61,7 @@ def test_nao_desfaz_registro_de_outro_usuario(app, logado):
     resposta = registrar(logado, "forca_academia")
     registro_id = next(a["registro_id"] for a in resposta.get_json()["acoes"] if a["registro_id"])
     outro = app.test_client()
-    outro.post("/registro", data={"username": "maria", "password": "senha-segura"})
+    outro.post("/registro", data={"username": "maria", "password": "senha-segura", "aceito": "1"})
     assert outro.delete(f"/api/registros/{registro_id}").status_code == 404
 
 
@@ -77,7 +77,7 @@ def test_criar_acao_personalizada_e_usar(logado):
 def test_acao_personalizada_e_so_de_quem_criou(app, logado):
     logado.post("/api/acoes", json={"nome": "Só minha", "atributo": "foco", "intensidade": "leve"})
     outro = app.test_client()
-    outro.post("/registro", data={"username": "maria", "password": "senha-segura"})
+    outro.post("/registro", data={"username": "maria", "password": "senha-segura", "aceito": "1"})
     assert all(a["nome"] != "Só minha" for a in outro.get("/api/estado").get_json()["acoes"])
 
 

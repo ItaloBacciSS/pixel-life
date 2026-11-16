@@ -85,6 +85,6 @@ def test_excluir_meta(logado):
 def test_metas_sao_de_cada_usuario(app, logado):
     meta_id = criar(logado).get_json()["metas"][0]["id"]
     outro = app.test_client()
-    outro.post("/registro", data={"username": "maria", "password": "senha-segura"})
+    outro.post("/registro", data={"username": "maria", "password": "senha-segura", "aceito": "1"})
     assert outro.get("/api/metas").get_json()["metas"] == []
     assert outro.delete(f"/api/metas/{meta_id}").status_code == 404

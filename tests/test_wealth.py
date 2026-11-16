@@ -87,6 +87,6 @@ def test_saldo_aparece_no_estado_do_jogo(logado):
 def test_dinheiro_e_de_cada_usuario(app, logado):
     movimento = mover(logado, 9900).get_json()["movimentos"][0]
     outro = app.test_client()
-    outro.post("/registro", data={"username": "maria", "password": "senha-segura"})
+    outro.post("/registro", data={"username": "maria", "password": "senha-segura", "aceito": "1"})
     assert outro.get("/api/riqueza").get_json()["saldo"] == 0
     assert outro.delete(f"/api/riqueza/{movimento['id']}").status_code == 404

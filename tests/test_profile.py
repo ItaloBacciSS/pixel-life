@@ -49,7 +49,7 @@ def test_excluir_conta_exige_a_senha(app, logado):
 
 def test_excluir_conta_nao_mexe_nos_dados_dos_outros(app, logado):
     outro = app.test_client()
-    outro.post("/registro", data={"username": "maria", "password": SENHA})
+    outro.post("/registro", data={"username": "maria", "password": SENHA, "aceito": "1"})
     outro.post("/api/registros", json={"action_key": "forca_academia"})
     logado.delete("/api/conta", json={"senha": SENHA})
     with app.app_context():

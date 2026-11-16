@@ -97,5 +97,5 @@ def test_svg_exige_login(client):
 def test_cada_usuario_tem_seu_personagem(app, logado):
     logado.put("/api/personagem", json=VISUAL)
     outro = app.test_client()
-    outro.post("/registro", data={"username": "maria", "password": "senha-segura"})
+    outro.post("/registro", data={"username": "maria", "password": "senha-segura", "aceito": "1"})
     assert outro.get("/api/personagem").get_json()["personagem"]["corpo"] == "masculino"

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Código de recuperação{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">{% endblock %}
+{% block content %}
+<main class="auth card">
+  <h1>Guarde seu código</h1>
+  <p>Este é o seu <strong>código de recuperação</strong>. Se você esquecer a senha, é a única forma de voltar para a sua conta, e ele <strong>não aparece de novo</strong>.</p>
+  <output class="codigo">{{ code }}</output>
+  <p class="aviso">Anote em um lugar seguro ou salve no gerenciador de senhas. Quem tiver o código consegue trocar a sua senha.</p>
+  <a class="btn" href="{{ after }}">Já guardei, continuar</a>
+</main>
+{% endblock %}

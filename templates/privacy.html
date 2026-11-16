@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Política de privacidade{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">{% endblock %}
+{% block content %}
+<main class="auth card privacidade">
+  <h1>Privacidade</h1>
+  <h2>O que o Pixel Life guarda</h2>
+  <p>Seu nome de usuário, a senha (só como hash, nunca em texto), um código de recuperação (também só como hash), os registros do seu dia, suas metas, os valores de dinheiro que você anota, e as escolhas do seu personagem, quarto e mascote. Não pedimos e-mail, nome real nem telefone.</p>
+  <h2>Dados sensíveis</h2>
+  <p>O atributo Fé existe no jogo. Se você registrar ações de fé, isso é um dado pessoal sensível: ele fica só na sua conta e ninguém além de você o vê. Você não é obrigado a usar esse atributo.</p>
+  <h2>Quem vê seus dados</h2>
+  <p>Só você. Não vendemos nem compartilhamos dados, e não usamos rastreadores ou anúncios. O único cookie é o de sessão, necessário para você ficar logado.</p>
+  <h2>Segurança</h2>
+  <p>Para barrar abusos, guardamos por até 1 hora as tentativas de login que falharam (nome de usuário e uma marca do endereço de rede, sem o IP em si).</p>
+  <h2>Onde ficam</h2>
+  <p>O site roda na Vercel e o banco de dados na Neon, ambos em São Paulo, no Brasil.</p>
+  <h2>Excluir</h2>
+  <p>Em Perfil, o botão <strong>Excluir meu perfil</strong> apaga a sua conta e todos os seus dados na hora, sem possibilidade de recuperar.</p>
+  <a href="javascript:history.back()">Voltar</a>
+</main>
+{% endblock %}

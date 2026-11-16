@@ -6,3 +6,16 @@
 
 .perigo { border-color: var(--danger); }
 .perigo h3 { color: var(--danger); }
+
+.codigo {
+  display: block;
+  margin-top: 12px;
+  padding: 10px 8px;
+  border: 3px dashed var(--ink);
+  background: #fff;
+  font: 0.75rem/1.6 var(--pixel);
+  text-align: center;
+  word-break: break-all;
+  user-select: all;
+}
+.codigo[hidden] { display: none; }

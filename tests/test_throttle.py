@@ -8,7 +8,7 @@ def _login(client, senha):
 
 
 def _criar(client):
-    client.post("/registro", data={"username": "gustavo", "password": "senha-segura"})
+    client.post("/registro", data={"username": "gustavo", "password": "senha-segura", "aceito": "1"})
     client.post("/sair")
 
 

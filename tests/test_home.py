@@ -82,7 +82,7 @@ def test_previa_do_humor(logado):
 def test_cada_pessoa_tem_o_seu_quarto(app, logado):
     salvar(logado)
     outro = app.test_client()
-    outro.post("/registro", data={"username": "maria", "password": "senha-segura"})
+    outro.post("/registro", data={"username": "maria", "password": "senha-segura", "aceito": "1"})
     assert outro.get("/api/quarto").get_json()["atual"] == room.load()["padrao"]
 
 

@@ -21,6 +21,16 @@
       </form>
     </section>
 
+    <section class="card">
+      <h3>Código de recuperação</h3>
+      <p>Se você esquecer a senha, é o código que permite voltar para a conta. Gerar um novo invalida o anterior.</p>
+      <form id="form-codigo" class="grade">
+        <label>Sua senha <input name="senha" type="password" required autocomplete="current-password"></label>
+        <button class="btn">Gerar novo código</button>
+      </form>
+      <output id="codigo" class="codigo" hidden></output>
+    </section>
+
     <section class="card perigo">
       <h3>Excluir perfil</h3>
       <p>Isso apaga sua conta, seus registros, as ações que você criou e o seu personagem. Não dá para desfazer.</p>
