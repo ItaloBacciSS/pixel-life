@@ -51,3 +51,16 @@ def test_todos_os_itens_renderizam_nos_dois_corpos():
     for corpo in ("masculino", "feminino"):
         for item_id in rules.items():
             assert sprites.render({**LOOK, "corpo": corpo, "itens": [item_id]}).startswith("<svg")
+
+
+def test_olhos_ficam_num_grupo_proprio_para_piscar():
+    svg = sprites.render(LOOK)
+    grupo = svg.split('<g class="olhos">')[1].split("</g>")[0]
+    assert grupo.count("<rect") == 2
+    assert "piscar" in svg and "prefers-reduced-motion" in svg
+
+
+def test_sem_os_olhos_o_rosto_continua_inteiro():
+    antes = sprites.render(LOOK).split('<g class="olhos">')[0]
+    linha_dos_olhos = [r for r in antes.split("<rect")[1:] if 'y="3"' in r]
+    assert linha_dos_olhos and all('fill="#f4c7a1"' in r or 'fill="#5a3825"' in r for r in linha_dos_olhos)

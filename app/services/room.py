@@ -9,9 +9,20 @@ DATA = Path(__file__).resolve().parent.parent / "data" / "quarto.json"
 BACKGROUND = Path(__file__).resolve().parents[2] / "static" / "img" / "cenario.svg"
 WIDTH, HEIGHT = 48, 28
 HUMORS = ("normal", "feliz", "triste")
-STYLE = (".pet.feliz{animation:pulo .6s steps(1) infinite}"
+STYLE = (".pet{transform-box:fill-box;transform-origin:center}"
+         ".pet.normal{animation:passear 24s infinite}"
+         ".pet.feliz{animation:passear 12s infinite}"
+         ".quique{animation:pulo .8s steps(1) infinite}"
+         ".feliz .quique{animation:pulo .4s steps(1) infinite}"
+         ".triste .quique{animation:pulo 2s steps(1) infinite}"
          "@keyframes pulo{50%{transform:translateY(-1px)}}"
-         "@media (prefers-reduced-motion:reduce){.pet{animation:none}}")
+         "@keyframes passear{"
+         "0%,10%{transform:translateX(0);animation-timing-function:steps(18)}"
+         "45%{transform:translateX(18px);animation-timing-function:steps(3)}"
+         "50%,60%{transform:translateX(18px) scaleX(-1);animation-timing-function:steps(18)}"
+         "95%{transform:translateX(0) scaleX(-1);animation-timing-function:steps(3)}"
+         "100%{transform:translateX(0) scaleX(1)}}"
+         "@media (prefers-reduced-motion:reduce){.pet,.quique{animation:none}}")
 
 
 @lru_cache
@@ -62,7 +73,7 @@ def render(levels, humor, home):
            pet_colors(home["especie"], home["pelagem"]))
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" shape-rendering="crispEdges">'
             f"<style>{STYLE}</style>{sprites.to_rects(props, WIDTH, HEIGHT)}"
-            f'<g class="pet {humor}">{sprites.to_rects(pet, WIDTH, HEIGHT)}</g></svg>')
+            f'<g class="pet {humor}"><g class="quique">{sprites.to_rects(pet, WIDTH, HEIGHT)}</g></g></svg>')
 
 
 def background(theme_id):

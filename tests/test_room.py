@@ -193,3 +193,17 @@ def test_mascote_fica_feliz_depois_de_tres_acoes_hoje(logado):
         logado.post("/api/registros", json={"action_key": chave})
     assert logado.get("/api/estado").get_json()["mascote"]["humor"] == "feliz"
     assert 'class="pet feliz"' in logado.get("/quarto.svg").get_data(as_text=True)
+
+
+@pytest.mark.parametrize("humor", room.HUMORS)
+def test_mascote_tem_animacao_e_respeita_reduzir_movimento(humor):
+    levels = {a["id"]: {"nivel": 1} for a in rules.load()["atributos"]}
+    svg = room.render(levels, humor, room.load()["padrao"])
+    assert f'class="pet {humor}"' in svg and 'class="quique"' in svg
+    assert "prefers-reduced-motion" in svg
+
+
+def test_so_o_mascote_triste_fica_parado_no_lugar():
+    assert ".pet.normal{animation:passear" in room.STYLE
+    assert ".pet.feliz{animation:passear" in room.STYLE
+    assert ".pet.triste" not in room.STYLE
