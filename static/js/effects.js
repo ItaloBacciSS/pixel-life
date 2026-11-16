@@ -1,4 +1,40 @@
 const $ = (id) => document.getElementById(id);
+const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Reinicia uma animação CSS: tira a classe, força o recálculo e põe de volta.
+function restart(node, name) {
+  node.classList.remove(name);
+  void node.offsetWidth;
+  node.classList.add(name);
+  node.addEventListener("animationend", () => node.classList.remove(name), { once: true });
+}
+
+// Faíscas saindo do ponto clicado, na cor do atributo.
+export function sparkles(rect, color = "#ffd23f", total = 10) {
+  if (calm()) return;
+  for (let i = 0; i < total; i++) {
+    const angle = (i / total) * 2 * Math.PI;
+    const distance = 28 + Math.random() * 34;
+    const piece = document.createElement("i");
+    piece.className = "faisca";
+    piece.style.cssText = `left: ${rect.left + rect.width / 2}px; top: ${rect.top + rect.height / 2}px; background: ${color}; --dx: ${Math.cos(angle) * distance}px; --dy: ${Math.sin(angle) * distance}px`;
+    document.body.append(piece);
+    setTimeout(() => piece.remove(), 700);
+  }
+}
+
+// Clarão e tremor da cena inteira, para os grandes momentos.
+export function impact() {
+  if (calm()) return;
+  restart($("clarao"), "ativo");
+  restart($("cena"), "tremor");
+}
+
+// Dá um brilho na barra do atributo que acabou de ganhar XP.
+export function glow(attributeId) {
+  const card = document.querySelector(`[data-id="${attributeId}"]`);
+  if (card && !calm()) restart(card, "ganhou");
+}
 
 export function floatText(text, rect, negative = false) {
   const node = Object.assign(document.createElement("span"), {

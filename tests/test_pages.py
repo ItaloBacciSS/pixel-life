@@ -48,7 +48,7 @@ def test_paginas_novas_exigem_login(client, caminho):
 
 @pytest.mark.parametrize("caminho", [
     "js/ui.js", "js/api.js", "js/dom.js", "js/effects.js", "js/character.js", "js/profile.js",
-    "js/format.js", "js/chart.js", "js/progress.js", "js/goals.js", "js/wealth.js", "js/home.js",
+    "js/sound.js", "js/format.js", "js/chart.js", "js/progress.js", "js/goals.js", "js/wealth.js", "js/home.js",
     "css/base.css", "css/auth.css", "css/game.css", "css/scene.css", "css/wardrobe.css", "css/profile.css",
     "css/chart.css", "css/progress.css", "css/goals.css", "css/wealth.css", "css/home.css",
     "img/cenario.svg", "fonts/press-start-2p.woff2",
@@ -60,3 +60,9 @@ def test_arquivos_estaticos_sao_servidos(client, caminho):
 def test_regras_incluem_a_cor_de_cada_atributo(logado):
     atributos = logado.get("/api/estado").get_json()["atributos"]
     assert all(a["cor"].startswith("#") for a in atributos)
+
+
+def test_tela_do_jogo_tem_os_elementos_dos_efeitos(logado):
+    html = logado.get("/").get_data(as_text=True)
+    for ident in ("cena", "clarao", "som", "confete", "banner"):
+        assert f'id="{ident}"' in html

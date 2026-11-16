@@ -111,3 +111,31 @@
 .confete { position: absolute; left: 50%; top: 55%; pointer-events: none; }
 .confete i { position: absolute; width: 8px; height: 8px; animation: explodir 1.2s steps(14) forwards; }
 @keyframes explodir { to { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(360deg); } }
+
+.clarao { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+.clarao.ativo { animation: clarear 0.4s steps(4); }
+@keyframes clarear { 0% { opacity: 0.85; } 100% { opacity: 0; } }
+
+.scene.tremor { animation: tremor-cena 0.4s steps(8); }
+@keyframes tremor-cena {
+  25% { transform: translate(calc(var(--px) * -0.5), calc(var(--px) * 0.25)); }
+  75% { transform: translate(calc(var(--px) * 0.5), calc(var(--px) * -0.25)); }
+}
+
+.som {
+  position: absolute;
+  right: calc(var(--px) * 0.8);
+  top: calc(var(--px) * 0.8);
+  padding: 2px 6px;
+  border: 3px solid var(--ink);
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.som:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .character, .clarao, .scene { animation: none; }
+}

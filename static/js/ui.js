@@ -2,6 +2,7 @@ import * as api from "./api.js";
 import { $, el, meter, toast } from "./dom.js";
 import * as effects from "./effects.js";
 import { brl, signed } from "./format.js";
+import * as sound from "./sound.js";
 
 const SHELF_SLOTS = 4;
 const roomUrl = $("quarto").getAttribute("src");
@@ -25,7 +26,7 @@ function actionButton(action) {
     className: `acao${done ? " feita" : ""}`,
     title: done ? "Clique para desfazer" : "",
     onclick: (event) => (done
-      ? run(() => api.removeEntry(action.registro_id))
+      ? run(() => api.removeEntry(action.registro_id)).then((result) => result && sound.play("undo"))
       : addEntry(action, event.currentTarget.getBoundingClientRect())),
   }, done ? `✓ ${action.nome}` : action.nome, el("small", {}, describe(action.efeitos)));
 }
@@ -38,7 +39,7 @@ function renderAttribute(attr) {
   requestAnimationFrame(() => requestAnimationFrame(() => { fill.style.width = `${percent}%`; }));
   shownPercent[attr.id] = percent;
 
-  const card = el("article", { className: `atributo card${leveledUp.includes(attr.id) ? " subiu" : ""}` },
+  const card = el("article", { className: `atributo card${leveledUp.includes(attr.id) ? " subiu" : ""}`, dataset: { id: attr.id } },
     el("header", {}, el("h3", {}, `${attr.icone} ${attr.nome}`), el("span", {}, `NV ${attr.nivel}`)),
     el("div", { className: "barra" }, fill),
     el("span", { className: "xp" }, `${attr.xp} / ${attr.custo} XP`),
@@ -118,6 +119,8 @@ async function addEntry(action, rect) {
   const result = await run(() => api.addEntry(action.key, state.dia));
   if (!result) return;
   effects.floatText(describe(action.efeitos), rect, action.tropeco);
+  const accent = getComputedStyle(document.querySelector(`[data-id="${Object.keys(action.efeitos)[0]}"]`) ?? document.body)
+    .getPropertyValue("--accent").trim() || "#ffd23f";
   const messages = [
     ...result.leveled.map((a) => `LEVEL UP! ${a.nome} ${a.nivel}`),
     ...result.badges.map((c) => `CONQUISTA! ${c.icone} ${c.nome}`),
@@ -125,13 +128,22 @@ async function addEntry(action, rect) {
   ];
   if (action.tropeco) {
     effects.animateCharacter("tremer");
-  } else if (messages.length) {
-    effects.animateCharacter("pulao");
-    effects.confetti();
-    effects.banner(...messages);
-  } else {
-    effects.animateCharacter("pulo");
+    effects.sparkles(rect, "#ff6b6b", 6);
+    sound.play("slip");
+    return;
   }
+  Object.keys(action.efeitos).forEach(effects.glow);
+  effects.sparkles(rect, accent);
+  if (!messages.length) {
+    effects.animateCharacter("pulo");
+    sound.play("done");
+    return;
+  }
+  effects.animateCharacter("pulao");
+  effects.confetti();
+  effects.impact();
+  effects.banner(...messages);
+  sound.play(result.leveled.length ? "level" : result.badges.length ? "badge" : "goal");
 }
 
 function shiftDay(days) {
@@ -142,7 +154,8 @@ function shiftDay(days) {
 
 $("dia-anterior").onclick = () => shiftDay(-1);
 $("dia-proximo").onclick = () => shiftDay(1);
-$("dia-hoje").onclick = () => run(() => api.getState());
+$("dia-hoje").onclick = () => sound.bindToggle($("som"));
+run(() => api.getState());
 
 const dialog = $("dialogo-acao");
 $("nova-acao").onclick = () => dialog.showModal();
@@ -157,4 +170,5 @@ $("form-acao").onsubmit = async (event) => {
   }
 };
 
+sound.bindToggle($("som"));
 run(() => api.getState());

@@ -8,13 +8,15 @@
   {% include "_topbar.html" %}
 
   <section class="hero card">
-    <div class="scene">
+    <div id="cena" class="scene">
       <img class="room" src="{{ url_for('room.background') }}" alt="">
       <img id="quarto" class="quarto" src="{{ url_for('room.svg') }}" alt="">
       <img id="personagem" class="character" src="{{ url_for('character.svg') }}" alt="Seu personagem">
       <a id="estante" class="estante" href="{{ url_for('summary.page') }}" aria-label="Ver conquistas"></a>
       <p id="balao" class="balao"></p>
       <div id="confete" class="confete"></div>
+      <div id="clarao" class="clarao"></div>
+      <button id="som" class="som" type="button"></button>
       <p id="banner" class="banner" role="status"></p>
       <div class="nivel-badge"><small>NV</small><strong id="nivel-geral">0</strong></div>
     </div>
