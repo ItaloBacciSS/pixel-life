@@ -22,7 +22,7 @@ def test_tela_do_personagem_muda_no_primeiro_acesso(logado):
 
 def test_criacao_da_conta_mostra_so_o_personagem(logado):
     primeiro = logado.get("/personagem?primeiro=1").get_data(as_text=True)
-    assert 'id="salvar"' in primeiro and 'id="corpos"' in primeiro and "Começar!" in primeiro
+    assert 'id="salvar"' in primeiro and 'id="basico"' in primeiro and "Começar!" in primeiro
     assert 'id="itens"' not in primeiro and 'class="menu"' not in primeiro
     depois = logado.get("/personagem").get_data(as_text=True)
     assert 'id="itens"' in depois and 'class="menu"' in depois
@@ -50,7 +50,7 @@ def test_paginas_novas_exigem_login(client, caminho):
     "js/ui.js", "js/api.js", "js/dom.js", "js/effects.js", "js/character.js", "js/profile.js",
     "js/sound.js", "js/cenario.js", "js/fala.js", "js/format.js", "js/chart.js", "js/progress.js", "js/goals.js", "js/wealth.js", "js/home.js",
     "css/base.css", "css/auth.css", "css/game.css", "css/scene.css", "css/wardrobe.css", "css/profile.css",
-    "css/cenario.css", "css/chart.css", "css/progress.css", "css/goals.css", "css/wealth.css", "css/home.css",
+    "css/cenario.css", "css/criador.css", "css/chart.css", "css/progress.css", "css/goals.css", "css/wealth.css", "css/home.css",
     "img/cenario.svg", "fonts/press-start-2p.woff2",
 ])
 def test_arquivos_estaticos_sao_servidos(client, caminho):

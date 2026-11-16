@@ -6,35 +6,10 @@
 
 .aviso { margin: 0; padding: 8px 12px; border-top: var(--border); background: var(--brand); font-size: 0.85rem; font-weight: 700; }
 
-.options h3, .itens-card h3 { margin: 16px 0 8px; font-size: 0.65rem; }
-.options h3:first-child, .itens-card h3 { margin-top: 0; }
+.options h3 { margin: 16px 0 8px; font-size: 0.65rem; }
+.options h3:first-child { margin-top: 0; }
 
 .chips, .swatches { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .swatch { width: 36px; height: 36px; padding: 0; border: 3px solid var(--ink); box-shadow: 0 3px 0 var(--ink); cursor: pointer; }
 .swatch.ativo { outline: 3px solid var(--ink); outline-offset: 2px; }
-
-#itens { display: grid; gap: 8px 24px; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); }
-.slot { margin: 12px 0 8px; color: var(--muted); font: 0.6rem/1.5 var(--pixel); }
-.itens { display: flex; flex-wrap: wrap; gap: 12px; }
-.item { width: 150px; }
-
-.item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 8px;
-  border: 3px solid var(--ink);
-  background: #fff;
-  box-shadow: 0 3px 0 var(--ink);
-  color: var(--ink);
-  font: inherit;
-  text-align: center;
-  cursor: pointer;
-}
-.item img { width: 56px; height: 80px; border: 3px solid var(--ink); background: #8ecae6; image-rendering: pixelated; }
-.item small { color: var(--muted); }
-.item.bloqueado img { filter: grayscale(1); opacity: 0.8; }
-.item.equipado { background: color-mix(in srgb, var(--brand) 45%, white); }
-.item.provando { outline: 3px dashed var(--ink); outline-offset: 2px; }

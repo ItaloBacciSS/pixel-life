@@ -1,0 +1,52 @@
+/* Tela do personagem: seletores com setas dos dois lados da pré-visualização. */
+.criador { display: grid; gap: 16px; grid-template-columns: 1fr auto 1fr; align-items: start; }
+.criador.so-corpo { grid-template-columns: 1fr auto; }
+.criador .preview { order: 0; position: sticky; top: 16px; }
+@media (max-width: 960px) {
+  .criador, .criador.so-corpo { grid-template-columns: 1fr; }
+  .criador .preview { order: -1; margin: 0 auto; position: static; }
+}
+
+.seletores { display: grid; gap: 14px; padding: 16px; }
+
+.rotulo { display: block; margin-bottom: 6px; font: 0.55rem/1.4 var(--pixel); color: var(--muted); }
+.linha { display: flex; align-items: stretch; gap: 6px; }
+
+.seta {
+  flex: none;
+  width: 36px;
+  border: 3px solid var(--ink);
+  background: #fff;
+  box-shadow: 0 3px 0 var(--ink);
+  color: var(--ink);
+  font: 1.3rem/1 var(--pixel);
+  cursor: pointer;
+}
+.seta:hover { background: var(--brand); }
+.seta:active { transform: translateY(3px); box-shadow: none; }
+
+.valor {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 4px 6px;
+  border: 3px solid var(--ink);
+  background: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+.amostra { flex: none; width: 24px; height: 24px; border: 2px solid var(--ink); }
+
+.dica { display: block; min-height: 1.3em; margin-top: 4px; color: var(--muted); font-size: 0.75rem; }
+
+.seletor.bloqueado .valor { background: #e4e4e4; color: var(--muted); }
+.seletor.bloqueado .dica { color: var(--danger); font-weight: 700; }
+
+.estado { margin: 0; padding: 8px 12px; border-top: var(--border); font-size: 0.8rem; }
+.estado:empty { display: none; }
+
+.salvar { display: block; width: calc(100% - 24px); margin: 12px; }

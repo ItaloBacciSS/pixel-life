@@ -8,11 +8,13 @@ def add_missing_columns():
     inspector = inspect(db.engine)
     dialect = db.engine.dialect
     quote = dialect.identifier_preparer.quote
+    # Duas instâncias subindo juntas tentam criar a mesma coluna: no Postgres o IF NOT EXISTS evita o erro.
+    guard = "IF NOT EXISTS " if dialect.name == "postgresql" else ""
     for table in db.metadata.sorted_tables:
         existing = {column["name"] for column in inspector.get_columns(table.name)}
         for column in table.columns:
             if column.name not in existing:
                 assert column.nullable, f"{table.name}.{column.name} precisa ser opcional para entrar numa tabela existente"
                 db.session.execute(text(
-                    f"ALTER TABLE {quote(table.name)} ADD COLUMN {quote(column.name)} {column.type.compile(dialect)}"))
+                    f"ALTER TABLE {quote(table.name)} ADD COLUMN {guard}{quote(column.name)} {column.type.compile(dialect)}"))
     db.session.commit()

@@ -3,39 +3,31 @@
 {% block head %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/scene.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/wardrobe.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/criador.css') }}">
 {% endblock %}
 {% block content %}
 <main class="container">
   {% if not first_time %}{% include "_topbar.html" %}{% endif %}
   <h2 class="titulo">{{ "Crie seu personagem" if first_time else "Seu personagem" }}</h2>
 
-  <div class="wardrobe">
+  <div class="criador{{ ' so-corpo' if first_time }}">
+    <section id="basico" class="card seletores" aria-label="Aparência"></section>
+
     <section class="card preview">
       <div class="scene">
         <img class="room" src="{{ url_for('room.background') }}" alt="">
         <img id="preview" class="character" alt="Pré-visualização do personagem">
       </div>
       <p id="aviso" class="aviso" hidden>Itens bloqueados só servem para provar: não são salvos.</p>
+      <p id="estado" class="estado" role="status"></p>
+      <button id="salvar" class="btn salvar" data-primeiro="{{ 1 if first_time else 0 }}">{{ "Começar!" if first_time else "Salvar" }}</button>
     </section>
 
-    <section class="card options">
-      <h3>Corpo</h3><div id="corpos" class="chips"></div>
-      <h3>Pele</h3><div id="peles" class="swatches"></div>
-      <h3>Penteado</h3><div id="penteados" class="chips"></div>
-      <h3>Cor do cabelo</h3><div id="cabelos" class="swatches"></div>
-      <h3>Modelo de roupa</h3><div id="trajes" class="chips"></div>
-      <h3>Cor da roupa</h3><div id="roupas" class="swatches"></div>
-    </section>
+    {% if not first_time %}
+    <section id="itens" class="card seletores" aria-label="Itens"></section>
+    {% endif %}
   </div>
 
-  {% if not first_time %}
-  <section class="card itens-card">
-    <h3>Itens</h3>
-    <div id="itens"></div>
-  </section>
-  {% endif %}
-
-  <button id="salvar" class="btn fab" data-primeiro="{{ 1 if first_time else 0 }}">{{ "Começar!" if first_time else "Salvar" }}</button>
   <p id="toast" role="status"></p>
 </main>
 {% endblock %}
