@@ -1,13 +1,13 @@
-# Pixel Life — Plano (v3)
+# Pixel Life — Plano (v4)
 
 Jogo idle no navegador onde o personagem é o próprio jogador. A evolução vem da vida real: o jogador registra o que fez no dia e o personagem reflete isso. O jogo continua "rodando" enquanto o jogador está fora (decaimento, sequências). É um jogo para a vida toda: progressão lenta, sem limite.
 
 ## Decisões tomadas
 
 - **Plataforma:** web, acessível de vários aparelhos. Python (Flask) no servidor, HTML/CSS nas telas e um pouco de JavaScript (arquivos separados).
-- **Visual:** pixel art arcade (decidido). Personagem grande num quarto em pixel art, fonte pixel (Press Start 2P, guardada no projeto), bordas grossas, sombras duras, barras de XP em blocos. Efeitos: texto flutuante "+XP", personagem pula ao registrar, treme num tropeço, confete e aviso "LEVEL UP!" ao subir de nível.
+- **Visual:** pixel art arcade (decidido). Personagem grande num quarto em pixel art, fonte pixel (Press Start 2P, guardada no projeto), bordas grossas, sombras duras, barras de XP em blocos. Efeitos: texto flutuante "+XP", faíscas e brilho ao registrar, personagem pula, treme num tropeço, confete e aviso "LEVEL UP!" ao subir de nível, com sons curtos (botão liga/desliga no quarto). Tudo respeita `prefers-reduced-motion`.
 - **Entrada de dados:** registro manual.
-- **Dados:** banco de dados (SQLite no PC, banco na nuvem depois) com login por usuário e senha. Servidor na nuvem para sincronizar entre aparelhos: publicação ainda pendente.
+- **Dados:** banco de dados com login por usuário e senha (SQLite no PC, Postgres na nuvem). **Publicado**: Vercel (região gru1) + Neon Postgres em São Paulo, sincronizando entre aparelhos. Repositório público no GitHub (portfólio); deploy automático a cada push.
 - **Calendário externo (Google etc.):** fase futura. Não é necessário para detectar dia sem registro — o próprio jogo sabe quais dias estão vazios.
 
 ## Registro
@@ -51,7 +51,7 @@ Cada atributo tem nível e barra de XP. Uma ação pode dar XP em mais de um atr
   - Um tropeço tira menos do que uma ação boa dá, exceto na **Fé**, onde o impacto deve ser perceptível.
   - Uma ação negativa pode afetar mais de um atributo.
   - Recuperação: depois de um tropeço, a próxima ação certa do mesmo atributo rende um pouco mais de XP por um tempo.
-- **Privacidade:** os dados ficam só no navegador, então o registro de tropeços não é visto por mais ninguém.
+- **Privacidade:** os dados ficam na conta do jogador, no banco; ninguém além dele vê o registro de tropeços na interface. A página `/privacidade` explica o que é guardado (a Fé é dado sensível e está citada lá). Falta incluir um contato na página.
 
 ## Contadores
 
@@ -92,7 +92,8 @@ Estrutura: `app/` (config, models, routes, services, data), `templates/`, `stati
 
 ## Personagem, itens e perfil (pronto)
 
-- Ao criar a conta, o jogador cai na criação do personagem: corpo (masculino ou feminino), cor da pele, do cabelo e da roupa. Dá para mudar depois na página Personagem.
+- Ao criar a conta, o jogador cai na criação do personagem: corpo (masculino ou feminino), cor da pele, do cabelo e da roupa, **3 penteados e 3 modelos de roupa por corpo** (todos liberados). Dá para mudar tudo depois na página Personagem.
+- A página Personagem usa **setinhas** (`<` `>`) ao lado da prévia: coluna da esquerda com o básico (corpo, pele, penteado, cor do cabelo, modelo e cor da roupa) e coluna da direita com os itens por posição (cabeça, rosto, roupa, costas, peito, pulso, mão, pés). Itens bloqueados aparecem nas setinhas com o requisito. Salvar fica no cartão da prévia.
 - O personagem é desenhado no servidor por camadas (`app/data/sprites.json`, renderizador em `app/services/sprites.py`), então as cores e os itens valem em qualquer aparelho.
 - 13 itens com desenho nos dois corpos, cada um com seu requisito em `rules.json`: Regata (Força 3), Faixa (Força 10), Tênis (Vitalidade 3), Óculos (Intelecto 3), Livro (Intelecto 10), Fone (Foco 5), Roupa social (Carreira 3), Relógio (Riqueza 5), Jaqueta (Carisma 5), Bíblia (Fé 5), Medalha (7 dias sem tropeçar), Capa (30 dias sem tropeçar), Coroa (nível geral 10).
 - Itens bloqueados aparecem em cinza com o requisito e o progresso (ex.: "Força nível 10 (3/10)"). Dá para provar um bloqueado na pré-visualização, mas ele não é salvo. Se um item equipado voltar a bloquear (nível caiu ao desfazer registros), ele sai sozinho.
@@ -103,7 +104,8 @@ Estrutura: `app/` (config, models, routes, services, data), `templates/`, `stati
 
 - 22 conquistas em `rules.json` (registros, dias de jogo, dias sem tropeçar, ações por atributo, nível de atributo, todos os atributos no nível 3, nível geral). Aparecem na página Progresso (bloqueadas mostram o progresso) e as 4 mais recentes ficam na estante do quarto. Ao ganhar uma, aparece o aviso "CONQUISTA!" com confete.
 - As conquistas são calculadas a partir do histórico, como o nível. Se o jogador desfaz um registro e perde o requisito, a conquista some; ao refazer, ela é ganha de novo.
-- Mascote Pixel (gatinho): feliz com 3 ou mais ações boas no dia, triste depois de 3 dias parado, normal no resto. Fala uma frase em um balão. Os números ficam em `rules.json` (`mascote`).
+- Mascote (gato ou cachorro): feliz com 3 ou mais ações boas no dia, triste depois de 3 dias parado, normal no resto. Ele só faz pequenos movimentos no lugar (respira, pisca, saltita), sem andar pelo quarto. A **fala sai do personagem**, num balão ao lado da cabeça.
+- Falas em `rules.json` (`mascote`): por humor (normal 10, feliz 10, triste 8), por período do dia (madrugada, manhã, tarde, noite) e para sequências (a partir de 3 dias). Escolhidas ao acaso a cada atualização, sem repetir a última; máximo de 40 caracteres cada (teste garante).
 - Quarto que evolui: cada atributo que chega ao nível 2 coloca um objeto no quarto (halter, livros, garrafa, relógio, quadro, diploma, Bíblia, cofrinho, planta). Desenhos em `app/data/quarto.json`; um teste garante que nada se sobrepõe nem cobre o personagem.
 
 ## Quarto e mascote personalizáveis (pronto)
@@ -111,6 +113,25 @@ Estrutura: `app/` (config, models, routes, services, data), `templates/`, `stati
 - Página Quarto: 6 temas de quarto (Clássico, Céu, Algodão-doce, Jardim, Cabana, Noite) e mascote gato ou cachorro, cada um com 5 cores de pelo. Tudo liberado desde o início, sem conquistar nada. Dá para ver o mascote nos três humores antes de salvar.
 - Os temas trocam as cores do cenário (`static/img/cenario.svg`) segundo `app/data/quarto.json`; o mascote e as cores também ficam nesse arquivo. A escolha fica na tabela `Home`; quem não escolheu usa Clássico, gato laranja.
 - Criação da conta: depois de cadastrar, o jogador cai só na montagem do personagem (corpo, pele, cabelo e roupa), sem menu e sem a lista de itens. Quarto e mascote ficam para a página Quarto.
+
+## Cenário vivo (pronto)
+
+- O quarto ganha uma janela que mostra o céu conforme a hora do jogador (madrugada, amanhecer, dia, entardecer, noite) e o clima conforme o humor do mascote (feliz = sol, normal = nuvens, triste = chuva). O ambiente escurece e esquenta de acordo com a hora.
+- Para testar: `?hora=10&clima=sol` na URL do jogo.
+- Personagem pisca; mascote respira e saltita; tudo desligado para quem prefere menos movimento.
+
+## Publicação e contas (pronto)
+
+- **Hospedagem:** Vercel (Flask na raiz via `index.py`, `vercel.json` com `gru1`) e Neon Postgres em sa-east-1. Variáveis: `SECRET_KEY` (obrigatória na Vercel), `TIMEZONE`, `DATABASE_URL` e `REGISTRATION_OPEN` (opcional).
+- **Desempenho:** a região padrão (iad1) com o banco em São Paulo fazia cada clique levar ~4 s (~15 consultas × ~114 ms). Com a função em gru1, uma consulta leva ~5 ms. A página `/saude` mostra região e tempo de consulta.
+- **Cadastro público** com nome de usuário único (`[A-Za-z0-9_.-]`, 3 a 40, sem diferenciar maiúsculas), senha de 8 a 128 caracteres que não pode ser comum nem igual ao usuário, e aceite da política de privacidade.
+- **Código de recuperação:** 16 caracteres, mostrado uma vez, guardado só em hash, trocado a cada uso; dá para gerar outro no Perfil (pede a senha).
+- **Limites de tentativa:** por usuário (5 em 15 min), por origem (20) e de cadastros (5 por hora), guardados no banco.
+- **Cabeçalhos e requisições:** CSP restrita, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, HSTS na Vercel, e bloqueio (403) de requisições de outro site que alteram dados. Cookie seguro na Vercel; corpo de requisição limitado a 64 KB.
+- **Banco:** `create_all` mais uma migração simples que só adiciona colunas novas (`app/migrations.py`).
+- **Cache:** arquivos estáticos são revalidados (ETag/304) para um deploy novo nunca deixar JavaScript velho no navegador.
+- Hipótese ainda não confirmada: o limite por origem depende de a Vercel enviar o IP real em `X-Real-IP`/`X-Forwarded-For`.
+- 304 testes automáticos passando.
 
 ## Progresso, metas e riqueza (pronto)
 
@@ -120,16 +141,16 @@ Estrutura: `app/` (config, models, routes, services, data), `templates/`, `stati
 
 ## Próximos passos
 
-1. Colocar na nuvem (hospedagem, banco, SECRET_KEY, limite de tentativas de login).
+1. **Estilo e cores** (etapa 4 do pacote visual, ainda não feita): paleta, contraste e acabamento.
 2. App instalável no celular (PWA).
-3. Ajustar os números (XP, decaimento, requisitos das conquistas) jogando.
-4. Decidir se o saldo deve dar XP de Riqueza automaticamente.
-5. Missões do dia: o jogador decidiu não fazer por enquanto.
+3. Sessão mais longa ("lembrar de mim") e encerrar as outras sessões ao trocar a senha.
+4. Ajustar os números (XP, decaimento, requisitos das conquistas) jogando.
+5. Decidir se o saldo deve dar XP de Riqueza automaticamente.
+6. Contato na página de privacidade e conferir o IP de origem na Vercel.
+7. Missões do dia: o jogador decidiu não fazer por enquanto.
 
 ## Pendente
 
-- Publicar na nuvem (escolher hospedagem e banco; pesquisar opções e preços atuais antes). Ligar `SECRET_KEY` e `DATABASE_URL` por variável de ambiente.
 - Riqueza com valores reais: atualização de saldo periódica, XP proporcional à renda (segunda versão).
 - Personagem mudando de aparência conforme evolui.
-- Limite de tentativas de login e proteção extra antes de publicar.
-- Ajustar os números de XP e decaimento jogando.
+- Calendário externo (fase futura).
