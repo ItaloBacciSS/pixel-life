@@ -1,0 +1,9 @@
+[
+  {"id": "classico", "nome": "Clássico"},
+  {"id": "noite", "nome": "Noite"},
+  {"id": "gameboy", "nome": "Portátil"},
+  {"id": "algodao", "nome": "Algodão-doce"},
+  {"id": "floresta", "nome": "Floresta"},
+  {"id": "poente", "nome": "Pôr do sol"},
+  {"id": "fliperama", "nome": "Fliperama"}
+]

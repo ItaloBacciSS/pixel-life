@@ -1,4 +1,4 @@
-# Pixel Life — Plano (v4)
+# Pixel Life — Plano (v5)
 
 Jogo idle no navegador onde o personagem é o próprio jogador. A evolução vem da vida real: o jogador registra o que fez no dia e o personagem reflete isso. O jogo continua "rodando" enquanto o jogador está fora (decaimento, sequências). É um jogo para a vida toda: progressão lenta, sem limite.
 
@@ -120,6 +120,13 @@ Estrutura: `app/` (config, models, routes, services, data), `templates/`, `stati
 - Para testar: `?hora=10&clima=sol` na URL do jogo.
 - Personagem pisca; mascote respira e saltita; tudo desligado para quem prefere menos movimento.
 
+## Estilos escolhíveis (pronto)
+
+- Perfil > Aparência: 7 estilos (Clássico, Noite, Portátil, Algodão-doce, Floresta, Pôr do sol, Fliperama). Aplica na hora e fica salvo na conta (`User.estilo`), valendo em todos os aparelhos.
+- Como funciona: cada tela usa variáveis de cor (`--sky`, `--paper`, `--surface`, `--text`, `--brand`...) e `static/css/temas.css` troca esses valores por `data-estilo` no `<html>`. A lista fica em `app/data/estilos.json`; o quarto, o personagem e o cenário não mudam (têm sua própria escolha).
+- Testes garantem que todo estilo do JSON tem CSS (e vice-versa), define todas as variáveis e tem contraste legível (texto, botões, avisos e títulos).
+- Para criar um estilo novo: um item em `estilos.json` e um bloco em `temas.css`.
+
 ## Publicação e contas (pronto)
 
 - **Hospedagem:** Vercel (Flask na raiz via `index.py`, `vercel.json` com `gru1`) e Neon Postgres em sa-east-1. Variáveis: `SECRET_KEY` (obrigatória na Vercel), `TIMEZONE`, `DATABASE_URL` e `REGISTRATION_OPEN` (opcional).
@@ -131,7 +138,7 @@ Estrutura: `app/` (config, models, routes, services, data), `templates/`, `stati
 - **Banco:** `create_all` mais uma migração simples que só adiciona colunas novas (`app/migrations.py`).
 - **Cache:** arquivos estáticos são revalidados (ETag/304) para um deploy novo nunca deixar JavaScript velho no navegador.
 - Hipótese ainda não confirmada: o limite por origem depende de a Vercel enviar o IP real em `X-Real-IP`/`X-Forwarded-For`.
-- 304 testes automáticos passando.
+- 410 testes automáticos passando.
 
 ## Progresso, metas e riqueza (pronto)
 
@@ -141,13 +148,12 @@ Estrutura: `app/` (config, models, routes, services, data), `templates/`, `stati
 
 ## Próximos passos
 
-1. **Estilo e cores** (etapa 4 do pacote visual, ainda não feita): paleta, contraste e acabamento.
-2. App instalável no celular (PWA).
-3. Sessão mais longa ("lembrar de mim") e encerrar as outras sessões ao trocar a senha.
-4. Ajustar os números (XP, decaimento, requisitos das conquistas) jogando.
-5. Decidir se o saldo deve dar XP de Riqueza automaticamente.
-6. Contato na página de privacidade e conferir o IP de origem na Vercel.
-7. Missões do dia: o jogador decidiu não fazer por enquanto.
+1. App instalável no celular (PWA).
+2. Sessão mais longa ("lembrar de mim") e encerrar as outras sessões ao trocar a senha.
+3. Ajustar os números (XP, decaimento, requisitos das conquistas) jogando.
+4. Decidir se o saldo deve dar XP de Riqueza automaticamente.
+5. Contato na página de privacidade e conferir o IP de origem na Vercel.
+6. Missões do dia: o jogador decidiu não fazer por enquanto.
 
 ## Pendente
 

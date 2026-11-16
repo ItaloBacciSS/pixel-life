@@ -36,3 +36,28 @@ $("form-excluir").onsubmit = async (event) => {
     toast(error.message);
   }
 };
+
+// Aparência: aplica na hora e salva na conta; se falhar, volta ao estilo anterior.
+$("estilos").onclick = async (event) => {
+  const botao = event.target.closest(".amostra");
+  if (!botao) return;
+  const anterior = document.documentElement.dataset.estilo;
+  const novo = botao.dataset.id;
+  if (novo === anterior) return;
+  marcar(novo);
+  try {
+    await api.saveStyle(novo);
+  } catch (error) {
+    marcar(anterior);
+    toast(error.message);
+  }
+};
+
+function marcar(id) {
+  document.documentElement.dataset.estilo = id;
+  for (const botao of $("estilos").children) {
+    const ativo = botao.dataset.id === id;
+    botao.classList.toggle("ativa", ativo);
+    botao.setAttribute("aria-pressed", ativo);
+  }
+}

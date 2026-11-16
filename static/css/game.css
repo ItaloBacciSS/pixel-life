@@ -1,6 +1,6 @@
 .streaks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 12px 16px 16px; }
 
-.streak { padding: 8px 12px; border: 3px solid var(--ink); background: #fff; font-size: 0.8rem; text-align: center; }
+.streak { padding: 8px 12px; border: 3px solid var(--ink); background: var(--surface); font-size: 0.8rem; text-align: center; }
 .streak strong { display: block; font: 0.75rem/1.6 var(--pixel); }
 
 .day-nav { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 8px 0 16px; }
@@ -34,7 +34,7 @@
 }
 .atributo h3 { font-size: inherit; }
 
-.barra { position: relative; height: 22px; margin: 4px 0 6px; border: 3px solid var(--ink); background: #fff; }
+.barra { position: relative; height: 22px; margin: 4px 0 6px; border: 3px solid var(--ink); background: var(--surface); }
 .barra > div { height: 100%; background: var(--accent); transition: width 0.7s steps(10); }
 .barra::after {
   content: "";
@@ -52,9 +52,9 @@
   align-items: flex-start;
   padding: 8px 12px;
   border: 3px solid var(--ink);
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 3px 0 var(--ink);
-  color: var(--ink);
+  color: var(--text);
   font: inherit;
   text-align: left;
   cursor: pointer;
@@ -63,15 +63,18 @@
 .acao:hover { background: color-mix(in srgb, var(--accent) 15%, white); }
 .acao:active { transform: translateY(3px); box-shadow: none; }
 .acao.feita { background: color-mix(in srgb, var(--accent) 40%, white); font-weight: 700; }
+/* Fundo claro fixo nos dois estados: o texto não pode seguir o tema, senão some nos estilos escuros. */
+.acao:hover, .acao.feita { color: #2b2d42; }
+.acao:hover small, .acao.feita small { color: #4a4d66; }
 
 .metas { margin: 0 0 16px; padding: 16px; }
 .metas h3 { font-size: 0.75rem; }
 .meta { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; margin-top: 12px; }
 .meta .trilho { grid-column: 1 / -1; }
-.meta.cumprida span { color: #2a7a2a; font-weight: 700; }
+.meta.cumprida span { color: var(--ok); font-weight: 700; }
 .saldo { display: inline-block; margin-top: 8px; font-weight: 700; }
 
-dialog { width: min(92vw, 380px); color: var(--ink); }
+dialog { width: min(92vw, 380px); border: var(--border); background: var(--paper); color: var(--text); }
 dialog::backdrop { background: rgb(43 45 66 / 50%); }
 .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
 

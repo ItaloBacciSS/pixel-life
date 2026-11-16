@@ -6,6 +6,6 @@
 .movimentos { margin: 0; padding: 0; list-style: none; }
 .movimentos li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 0; border-bottom: 2px solid var(--line); }
 .movimentos small { display: block; color: var(--muted); }
-.movimentos .entrada { color: #2a7a2a; }
+.movimentos .entrada { color: var(--ok); }
 .movimentos .saida { color: var(--danger); }
 .movimentos button { padding: 4px 8px; }

@@ -28,4 +28,5 @@ export const setBalance = (cents, day) => request("POST", "/api/riqueza/saldo", 
 export const removeMove = (id) => request("DELETE", `/api/riqueza/${id}`);
 export const changePassword = (current, next) => request("POST", "/api/senha", { atual: current, nova: next });
 export const newRecoveryCode = (password) => request("POST", "/api/recuperacao", { senha: password });
+export const saveStyle = (id) => request("PUT", "/api/estilo", { estilo: id });
 export const deleteAccount = (password) => request("DELETE", "/api/conta", { senha: password });

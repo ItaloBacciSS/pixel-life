@@ -50,7 +50,7 @@ def test_paginas_novas_exigem_login(client, caminho):
     "js/ui.js", "js/api.js", "js/dom.js", "js/effects.js", "js/character.js", "js/profile.js",
     "js/sound.js", "js/cenario.js", "js/fala.js", "js/format.js", "js/chart.js", "js/progress.js", "js/goals.js", "js/wealth.js", "js/home.js",
     "css/base.css", "css/auth.css", "css/game.css", "css/scene.css", "css/wardrobe.css", "css/profile.css",
-    "css/cenario.css", "css/criador.css", "css/chart.css", "css/progress.css", "css/goals.css", "css/wealth.css", "css/home.css",
+    "css/cenario.css", "css/criador.css", "css/chart.css", "css/progress.css", "css/goals.css", "css/wealth.css", "css/home.css", "css/temas.css",
     "img/cenario.svg", "fonts/press-start-2p.woff2",
 ])
 def test_arquivos_estaticos_sao_servidos(client, caminho):

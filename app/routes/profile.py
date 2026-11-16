@@ -1,6 +1,6 @@
 from flask import Blueprint, g, jsonify, render_template, request, session
 
-from ..services import accounts
+from ..services import accounts, styles
 from .auth import login_required
 
 bp = Blueprint("profile", __name__)
@@ -9,7 +9,7 @@ bp = Blueprint("profile", __name__)
 @bp.get("/perfil")
 @login_required
 def page():
-    return render_template("profile.html")
+    return render_template("profile.html", estilos=styles.catalog())
 
 
 @bp.post("/api/senha")
@@ -34,3 +34,11 @@ def delete_account():
 def recovery_code():
     data = request.get_json(silent=True) or {}
     return jsonify(codigo=accounts.regenerate_recovery_code(g.user, data.get("senha")))
+
+
+@bp.put("/api/estilo")
+@login_required
+def choose_style():
+    data = request.get_json(silent=True) or {}
+    styles.choose(g.user, data.get("estilo"))
+    return jsonify(ok=True)

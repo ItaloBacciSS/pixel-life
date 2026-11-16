@@ -7,11 +7,11 @@
   gap: 4px;
   padding: 8px;
   border: 3px solid var(--ink);
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 3px 0 var(--ink);
-  color: var(--ink);
+  color: var(--text);
   font: inherit;
   cursor: pointer;
 }
 .tema img { width: 144px; height: 84px; border: 3px solid var(--ink); image-rendering: pixelated; }
-.tema.ativo { background: var(--brand); }
+.tema.ativo { background: var(--brand); color: var(--on-brand); }

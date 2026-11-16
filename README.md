@@ -18,6 +18,7 @@ O cenário muda com a hora e com o humor do mascote (sol, nuvens, chuva; dia, en
 - **Registro diário** de ações (prontas ou criadas por você), com sequências (streaks) e tropeços que pesam na evolução.
 - **Personagem customizável** em pixel art: corpo, cores, 3 penteados e 3 roupas por corpo, e itens que se liberam conforme você evolui. Setinhas mudam cada peça; as bloqueadas mostram o que falta.
 - **Quarto e mascote** (gato ou cachorro) personalizáveis; o quarto muda com o seu progresso, a janela mostra o céu da hora real e o mascote reage ao seu humor. O personagem fala frases variadas conforme o momento do dia e a sequência.
+- **7 estilos de cores** à escolha no Perfil (Clássico, Noite, Portátil, Algodão-doce, Floresta, Pôr do sol, Fliperama), salvos na conta.
 - **Efeitos e sons** ao registrar (faíscas, XP flutuante, confete, level up), com botão para silenciar e respeito a `prefers-reduced-motion`.
 - **Conquistas**, **metas semanais** e **resumo/evolução** com gráfico.
 - **Riqueza real**: controle de saldo em reais com gráfico por dia.

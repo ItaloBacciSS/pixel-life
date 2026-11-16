@@ -13,6 +13,19 @@
     </section>
 
     <section class="card">
+      <h3>Aparência</h3>
+      <p>Escolha o visual do jogo. Vale para todos os seus aparelhos.</p>
+      <div class="estilos" id="estilos">
+        {% for estilo in estilos %}
+        <button type="button" class="amostra{% if (g.user.estilo or 'classico') == estilo.id %} ativa{% endif %}" data-estilo="{{ estilo.id }}" data-id="{{ estilo.id }}" aria-pressed="{{ 'true' if (g.user.estilo or 'classico') == estilo.id else 'false' }}">
+          <span class="cores"><i></i><i></i><i></i></span>
+          {{ estilo.nome }}
+        </button>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="card">
       <h3>Trocar senha</h3>
       <form id="form-senha" class="grade">
         <label>Senha atual <input name="atual" type="password" required autocomplete="current-password"></label>

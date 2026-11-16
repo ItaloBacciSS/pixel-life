@@ -1,0 +1,42 @@
+/* Estilos escolhíveis no Perfil. O Clássico é o :root de base.css. Cada bloco só troca variáveis. */
+[data-estilo="classico"] {
+  --sky: #5fc4f5; --paper: #fff4d6; --surface: #fff; --ink: #2b2d42; --text: #2b2d42; --muted: #5c5f77;
+  --brand: #ffd23f; --on-brand: #2b2d42; --danger: #d62839; --danger-texto: #c1121f; --line: #e8d9a8;
+  --titulo: #fff; --ok: #2a7a2a; --locked: #e4e4e4;
+}
+
+[data-estilo="noite"] {
+  --sky: #1b2147; --paper: #2a3263; --surface: #1d2350; --ink: #090b1c; --text: #eef0ff; --muted: #b4bae6;
+  --brand: #ffd23f; --on-brand: #1a1a2e; --danger: #c1121f; --danger-texto: #ff8a95; --line: #3d4780;
+  --titulo: #fff; --ok: #7ee08a; --locked: #3a4170;
+}
+
+[data-estilo="gameboy"] {
+  --sky: #4f7a28; --paper: #e0f8d0; --surface: #f2fde8; --ink: #0f380f; --text: #0f380f; --muted: #306230;
+  --brand: #9bbc0f; --on-brand: #0f380f; --danger: #8b1e1e; --danger-texto: #8b1e1e; --line: #a8d08d;
+  --titulo: #e0f8d0; --ok: #306230; --locked: #c5dfb5;
+}
+
+[data-estilo="algodao"] {
+  --sky: #e0558f; --paper: #fff0f6; --surface: #fff; --ink: #4a2040; --text: #4a2040; --muted: #86496e;
+  --brand: #ffd166; --on-brand: #4a2040; --danger: #c9184a; --danger-texto: #c9184a; --line: #f5c6dc;
+  --titulo: #fff; --ok: #1f7a4d; --locked: #f0dbe6;
+}
+
+[data-estilo="floresta"] {
+  --sky: #2f8f5b; --paper: #f3ecd0; --surface: #fffaf0; --ink: #1f2d1f; --text: #1f2d1f; --muted: #4f5f4a;
+  --brand: #f2c14e; --on-brand: #1f2d1f; --danger: #c0392b; --danger-texto: #b02a1d; --line: #dcd2a6;
+  --titulo: #fff; --ok: #1f6b36; --locked: #e6e0c8;
+}
+
+[data-estilo="poente"] {
+  --sky: #d1456b; --paper: #fff1e0; --surface: #fffaf3; --ink: #3b1d2e; --text: #3b1d2e; --muted: #7a4a5c;
+  --brand: #ffc233; --on-brand: #3b1d2e; --danger: #b3122a; --danger-texto: #b3122a; --line: #f0cfa8;
+  --titulo: #fff; --ok: #1f7a3a; --locked: #efe0d0;
+}
+
+[data-estilo="fliperama"] {
+  --sky: #120a2a; --paper: #1f1445; --surface: #150d33; --ink: #05020f; --text: #f4eeff; --muted: #c3b5f0;
+  --brand: #ff2e97; --on-brand: #1a0033; --danger: #d90429; --danger-texto: #ff7a92; --line: #3b2a7a;
+  --titulo: #5cf2ff; --ok: #5cf2a0; --locked: #33265f;
+}
