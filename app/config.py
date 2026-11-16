@@ -25,6 +25,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = _database_url()
     SQLALCHEMY_ENGINE_OPTIONS = {"pool_pre_ping": True}
     TIMEZONE = os.environ.get("TIMEZONE", "America/Sao_Paulo")
+    SEND_FILE_MAX_AGE_DEFAULT = 3600
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"
     SESSION_COOKIE_SECURE = bool(os.environ.get("VERCEL"))

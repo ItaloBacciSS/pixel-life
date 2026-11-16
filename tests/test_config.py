@@ -24,3 +24,9 @@ def test_postgres_url_e_usada_quando_nao_ha_database_url(monkeypatch):
     monkeypatch.delenv("DATABASE_URL", raising=False)
     monkeypatch.setenv("POSTGRES_URL", "postgres://u:p@host/db")
     assert config._database_url() == "postgresql+psycopg2://u:p@host/db"
+
+
+def test_arquivos_estaticos_vao_para_o_cache_do_navegador(client):
+    resposta = client.get("/static/css/base.css")
+    assert resposta.status_code == 200
+    assert "max-age=3600" in resposta.headers["Cache-Control"]
