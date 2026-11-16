@@ -12,9 +12,9 @@ def create_app(config=Config):
     db.init_app(app)
 
     from . import models  # noqa: F401  (registra as tabelas)
-    from .routes import api, auth, character, game, goals, profile, room, summary, wealth
+    from .routes import api, auth, character, game, goals, health, profile, room, summary, wealth
 
-    for module in (auth, game, api, character, profile, room, summary, goals, wealth):
+    for module in (auth, game, api, character, profile, room, summary, goals, wealth, health):
         app.register_blueprint(module.bp)
 
     @app.errorhandler(ApiError)
