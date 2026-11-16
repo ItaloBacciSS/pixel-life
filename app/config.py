@@ -25,7 +25,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = _database_url()
     SQLALCHEMY_ENGINE_OPTIONS = {"pool_pre_ping": True}
     TIMEZONE = os.environ.get("TIMEZONE", "America/Sao_Paulo")
-    SEND_FILE_MAX_AGE_DEFAULT = 3600
+    SEND_FILE_MAX_AGE_DEFAULT = 0  # o navegador confere se o arquivo mudou antes de reusar (evita JS velho após um deploy)
     MAX_CONTENT_LENGTH = 64 * 1024
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"

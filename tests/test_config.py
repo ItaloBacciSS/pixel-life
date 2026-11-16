@@ -26,7 +26,9 @@ def test_postgres_url_e_usada_quando_nao_ha_database_url(monkeypatch):
     assert config._database_url() == "postgresql+psycopg2://u:p@host/db"
 
 
-def test_arquivos_estaticos_vao_para_o_cache_do_navegador(client):
-    resposta = client.get("/static/css/base.css")
-    assert resposta.status_code == 200
-    assert "max-age=3600" in resposta.headers["Cache-Control"]
+def test_arquivos_estaticos_sao_conferidos_a_cada_uso_e_nao_ficam_velhos(client):
+    primeira = client.get("/static/js/ui.js")
+    assert "no-cache" in primeira.headers["Cache-Control"]
+    etag = primeira.headers["ETag"]
+    repetida = client.get("/static/js/ui.js", headers={"If-None-Match": etag})
+    assert repetida.status_code == 304  # nada é baixado de novo se o arquivo não mudou
