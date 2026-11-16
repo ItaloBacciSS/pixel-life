@@ -48,9 +48,9 @@ def test_paginas_novas_exigem_login(client, caminho):
 
 @pytest.mark.parametrize("caminho", [
     "js/ui.js", "js/api.js", "js/dom.js", "js/effects.js", "js/character.js", "js/profile.js",
-    "js/sound.js", "js/format.js", "js/chart.js", "js/progress.js", "js/goals.js", "js/wealth.js", "js/home.js",
+    "js/sound.js", "js/cenario.js", "js/fala.js", "js/format.js", "js/chart.js", "js/progress.js", "js/goals.js", "js/wealth.js", "js/home.js",
     "css/base.css", "css/auth.css", "css/game.css", "css/scene.css", "css/wardrobe.css", "css/profile.css",
-    "css/chart.css", "css/progress.css", "css/goals.css", "css/wealth.css", "css/home.css",
+    "css/cenario.css", "css/chart.css", "css/progress.css", "css/goals.css", "css/wealth.css", "css/home.css",
     "img/cenario.svg", "fonts/press-start-2p.woff2",
 ])
 def test_arquivos_estaticos_sao_servidos(client, caminho):
@@ -66,3 +66,14 @@ def test_tela_do_jogo_tem_os_elementos_dos_efeitos(logado):
     html = logado.get("/").get_data(as_text=True)
     for ident in ("cena", "clarao", "som", "confete", "banner"):
         assert f'id="{ident}"' in html
+
+
+def test_tela_do_jogo_tem_a_janela_do_cenario_vivo(logado):
+    html = logado.get("/").get_data(as_text=True)
+    assert 'class="janela"' in html and 'class="penumbra"' in html and "css/cenario.css" in html
+
+
+def test_estado_traz_as_falas_do_personagem(logado):
+    mascote = logado.get("/api/estado").get_json()["mascote"]
+    assert mascote["humor"] in ("normal", "feliz", "triste")
+    assert mascote["falas"]["humor"] and set(mascote["falas"]["periodos"]) >= {"manha", "tarde", "noite", "madrugada"}

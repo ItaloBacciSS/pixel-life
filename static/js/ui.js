@@ -1,6 +1,8 @@
 import * as api from "./api.js";
 import { $, el, meter, toast } from "./dom.js";
+import * as cenario from "./cenario.js";
 import * as effects from "./effects.js";
+import * as speech from "./fala.js";
 import { brl, signed } from "./format.js";
 import * as sound from "./sound.js";
 
@@ -85,7 +87,8 @@ function render() {
   renderDay();
   renderShelf();
   renderGoals();
-  $("balao").textContent = state.mascote.frase;
+  const now = cenario.paint(state.mascote.humor);
+  $("balao").textContent = speech.pick(state.mascote.falas, now.period, state.sequencias.geral.atual);
   $("atributos").replaceChildren(...state.atributos.map(renderAttribute));
   $("tropecos").replaceChildren(
     el("h3", {}, "Tropeços"),

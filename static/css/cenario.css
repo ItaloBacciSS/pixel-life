@@ -1,0 +1,60 @@
+/* Janela e luz do quarto: o JS só troca data-ceu e data-clima na cena. */
+.scene {
+  --ceu-alto: #8ecae6;
+  --ceu-baixo: #b8e2f2;
+  --nuvem: #fff;
+  --penumbra: transparent;
+}
+.scene[data-ceu="madrugada"] { --ceu-alto: #141a33; --ceu-baixo: #1e2750; --nuvem: #55608a; --penumbra: rgb(10 15 60 / 45%); }
+.scene[data-ceu="amanhecer"] { --ceu-alto: #f4b183; --ceu-baixo: #ffd89c; --nuvem: #ffe9d0; --penumbra: rgb(255 170 100 / 12%); }
+.scene[data-ceu="entardecer"] { --ceu-alto: #e5707e; --ceu-baixo: #f4a261; --nuvem: #ffd6c9; --penumbra: rgb(255 120 60 / 18%); }
+.scene[data-ceu="noite"] { --ceu-alto: #232a4d; --ceu-baixo: #2f3a68; --nuvem: #6a77a3; --penumbra: rgb(20 30 90 / 35%); }
+
+.scene[data-clima="chuva"] { --nuvem: #8d99ae; }
+.scene[data-clima="chuva"][data-ceu="dia"] { --ceu-alto: #7a8ba0; --ceu-baixo: #9aa8ba; --penumbra: rgb(60 70 90 / 14%); }
+.scene[data-clima="chuva"]:is([data-ceu="amanhecer"], [data-ceu="entardecer"]) { --ceu-alto: #8d8fa3; --ceu-baixo: #a3a5b8; }
+.scene[data-clima="chuva"]:is([data-ceu="noite"], [data-ceu="madrugada"]) { --ceu-alto: #1c2236; --ceu-baixo: #262d45; --nuvem: #4a5470; }
+
+.penumbra { position: absolute; inset: 0; background: var(--penumbra); pointer-events: none; }
+
+.janela {
+  position: absolute;
+  left: calc(34 * var(--px));
+  top: calc(4 * var(--px));
+  width: calc(10 * var(--px));
+  height: calc(8 * var(--px));
+  pointer-events: none;
+}
+.ceu-alto { fill: var(--ceu-alto); }
+.ceu-baixo { fill: var(--ceu-baixo); }
+.nuvens rect { fill: var(--nuvem); }
+.sol { fill: #ffd23f; }
+.lua { fill: #f1f1d0; }
+.lua-sombra { fill: var(--ceu-alto); }
+.estrelas rect { fill: #fff; animation: cintilar 3s steps(1) infinite; }
+.estrelas rect:nth-child(2) { animation-delay: -1s; }
+.estrelas rect:nth-child(3) { animation-delay: -2s; }
+.chuva rect { fill: #cfe8ff; animation: cair 0.8s steps(4) infinite; }
+.chuva rect:nth-child(2) { animation-delay: -0.2s; }
+.chuva rect:nth-child(3) { animation-delay: -0.4s; }
+.chuva rect:nth-child(4) { animation-delay: -0.6s; }
+
+.sol, .lua, .estrelas, .nuvens, .chuva { opacity: 0; }
+.scene:is([data-ceu="amanhecer"], [data-ceu="dia"], [data-ceu="entardecer"]):not([data-clima="chuva"]) .sol,
+.scene:is([data-ceu="noite"], [data-ceu="madrugada"]):not([data-clima="chuva"]) :is(.lua, .estrelas),
+.scene:is([data-clima="nuvens"], [data-clima="chuva"]) .nuvens,
+.scene[data-clima="chuva"] .chuva { opacity: 1; }
+
+.scene[data-ceu="amanhecer"] .sol { transform: translate(-5px, 4px); }
+.scene[data-ceu="entardecer"] .sol { transform: translate(2px, 4px); }
+.scene[data-ceu="madrugada"] .lua { transform: translate(-5px, 0); }
+
+.nuvens { animation: deriva 60s steps(48) infinite; }
+
+@keyframes deriva { from { transform: translateX(-6px); } to { transform: translateX(10px); } }
+@keyframes cair { from { transform: translateY(-1px); } to { transform: translateY(3px); } }
+@keyframes cintilar { 50% { opacity: 0.2; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .nuvens, .estrelas rect, .chuva rect { animation: none; }
+}

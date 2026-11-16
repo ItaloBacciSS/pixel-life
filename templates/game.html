@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block head %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/scene.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cenario.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
 {% endblock %}
 {% block content %}
@@ -10,6 +11,28 @@
   <section class="hero card">
     <div id="cena" class="scene">
       <img class="room" src="{{ url_for('room.background') }}" alt="">
+      <div class="penumbra"></div>
+      <svg class="janela" viewBox="34 4 10 8" shape-rendering="crispEdges" aria-hidden="true">
+        <clipPath id="vidros">
+          <rect x="34" y="4" width="4" height="3"/><rect x="39" y="4" width="5" height="3"/>
+          <rect x="34" y="8" width="4" height="4"/><rect x="39" y="8" width="5" height="4"/>
+        </clipPath>
+        <g clip-path="url(#vidros)">
+          <rect class="ceu-alto" x="34" y="4" width="10" height="4"/>
+          <rect class="ceu-baixo" x="34" y="8" width="10" height="4"/>
+          <g class="estrelas"><rect x="35" y="5" width="1" height="1"/><rect x="40" y="9" width="1" height="1"/><rect x="42" y="6" width="1" height="1"/></g>
+          <g class="lua"><rect x="40" y="5" width="2" height="2"/><rect class="lua-sombra" x="41" y="5" width="1" height="1"/></g>
+          <rect class="sol" x="40" y="5" width="2" height="2"/>
+          <g class="nuvens">
+            <rect x="35" y="5" width="3" height="1"/><rect x="36" y="6" width="2" height="1"/>
+            <rect x="40" y="9" width="3" height="1"/><rect x="41" y="10" width="2" height="1"/>
+          </g>
+          <g class="chuva">
+            <rect x="35" y="7" width="1" height="1"/><rect x="37" y="9" width="1" height="1"/>
+            <rect x="40" y="7" width="1" height="1"/><rect x="42" y="9" width="1" height="1"/>
+          </g>
+        </g>
+      </svg>
       <img id="quarto" class="quarto" src="{{ url_for('room.svg') }}" alt="">
       <img id="personagem" class="character" src="{{ url_for('character.svg') }}" alt="Seu personagem">
       <a id="estante" class="estante" href="{{ url_for('summary.page') }}" aria-label="Ver conquistas"></a>

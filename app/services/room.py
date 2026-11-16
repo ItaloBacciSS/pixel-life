@@ -46,7 +46,8 @@ def mood(snap, today):
         humor = "triste"
     else:
         humor = "normal"
-    return {"nome": settings["nome"], "humor": humor, "frase": settings[humor]["frase"]}
+    falas = {"humor": settings[humor]["falas"], "periodos": settings["periodos"], "sequencia": settings["sequencia"]}
+    return {"nome": settings["nome"], "humor": humor, "falas": falas}
 
 
 def _paint(pixels, rows, x0, y0, colors):

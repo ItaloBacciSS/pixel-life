@@ -25,9 +25,47 @@
   ],
   "mascote": {
     "nome": "Pixel",
-    "feliz": {"registros_hoje": 3, "frase": "Hoje está rendendo!"},
-    "triste": {"dias_parado": 3, "frase": "Senti sua falta... vamos voltar?"},
-    "normal": {"frase": "Bora registrar o dia?"}
+    "feliz": {"registros_hoje": 3, "falas": [
+      "Hoje está rendendo!",
+      "Que dia bom!",
+      "Estou em uma boa fase!",
+      "Isso sim é constância!",
+      "Mandei muito bem hoje.",
+      "Olha só esse progresso!",
+      "Já quero repetir amanhã.",
+      "Estou imparável!",
+      "Orgulho de mim agora.",
+      "Que energia boa!"
+    ]},
+    "triste": {"dias_parado": 3, "falas": [
+      "Faz uns dias que sumi...",
+      "Sem pressão. Recomeçar é ok.",
+      "Que tal uma ação pequena?",
+      "Um registro já muda o dia.",
+      "O quarto sentiu minha falta.",
+      "Hoje eu volto pro jogo.",
+      "Vamos de leve, passo a passo.",
+      "A chuva passa. Bora voltar?"
+    ]},
+    "normal": {"falas": [
+      "Bora registrar o dia?",
+      "O que eu já fiz hoje?",
+      "Um passo de cada vez.",
+      "Vamos ver como está o dia.",
+      "Bora subir de nível?",
+      "Pequenos hábitos, grande jogo.",
+      "Hoje pode ser um bom dia.",
+      "Será que dá pra treinar hoje?",
+      "Água, sono e foco. Bora?",
+      "Qual vai ser a próxima ação?"
+    ]},
+    "periodos": {
+      "madrugada": ["Tá tarde... ou muito cedo?", "Hora de dormir bem também.", "Descansar também é evoluir.", "Madrugada: o sono conta XP.", "Silêncio. Dá pra ouvir o foco."],
+      "manha": ["Bom dia! Café e foco.", "Manhã é hora de começar bem.", "Que tal um alongamento?", "O dia ainda está todo aí!", "Bora aproveitar a manhã.", "Manhã nova, chance nova."],
+      "tarde": ["Boa tarde! Já bebeu água?", "Meio do dia: respira e segue.", "Dá tempo de estudar um pouco.", "A tarde rende, bora?", "Já fiz algo bom hoje?", "Que tal uma pausa ativa?"],
+      "noite": ["Boa noite! Como foi o dia?", "Hora de registrar o dia.", "Fecha o dia com chave de ouro.", "Já registrei tudo de hoje?", "Dormir cedo, evoluir mais.", "Amanhã tem mais."]
+    },
+    "sequencia": ["Sem tropeçar há dias. Segura!", "A sequência está firme!", "Não quebra essa sequência!", "Constância é meu superpoder.", "Dia após dia, nível após nível."]
   },
   "conquistas": [
     {"id": "primeiro_passo", "nome": "Primeiro passo", "icone": "🌱", "requisito": {"registros": 1}},
